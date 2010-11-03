@@ -4,7 +4,7 @@ use warnings;
 use Test::More 0.88;
 use Test::Fatal;
 
-use Dist::Zilla::Util::Test::KENTNL 0.01000004 qw( test_config );
+use Dist::Zilla::Util::Test::KENTNL 0.01000011 qw( test_config );
 use Dist::Zilla::Util::EmulatePhase  qw( -all );
 
 subtest 'deduplicate tests' => sub {
