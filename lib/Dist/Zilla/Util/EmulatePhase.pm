@@ -78,7 +78,7 @@ sub get_plugins {
 
   if ( $config->exists('skip_with') ){
     $config->at('skip_with')->each(sub{
-      my ( $index, $value ) =  @_; 
+      my ( $index, $value ) =  @_;
       my $without = expand_modname($value);
       $plugins = $plugins->grep(sub{ not $_->does($without) });
     });
@@ -93,7 +93,7 @@ sub get_plugins {
 
   if( $config->exists('skip_isa') ){
     $config->at('skip_isa')->each(sub{
-      my ( $index, $value ) =  @_; 
+      my ( $index, $value ) =  @_;
       my $isnt = expand_modname($value);
       $plugins = $plugins->grep(sub{ not $_->isa($isnt) });
     });
