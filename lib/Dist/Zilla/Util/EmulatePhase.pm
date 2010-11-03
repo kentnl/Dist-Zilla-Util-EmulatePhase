@@ -11,7 +11,7 @@ use Sub::Exporter -setup => {
   groups  => [ default => [ qw( -all )]],
 };
 
-=head1 deduplicate
+=method deduplicate
 
 Internal utility that de-duplicates references by ref-addr alone.
 
@@ -30,7 +30,7 @@ sub deduplicate {
   return @out;
 }
 
-=head1 expand_modname
+=method expand_modname
 
 Internal utility to expand various shorthand notations to full ones.
 
@@ -47,11 +47,11 @@ sub expand_modname {
   return $_[0];
 }
 
-=head1 get_plugins
+=method get_plugins
 
 Probe Dist::Zilla's plugin registry and get items matching a specification
 
-  my @plugins = get_plugins({ 
+  my @plugins = get_plugins({
     zilla     => $self->zilla,
     with      => [qw( -MetaProvider -SomethingElse     )],
     skip_with => [qw( -SomethingBadThatIsAMetaProvider )],
@@ -98,7 +98,7 @@ sub get_plugins {
   return deduplicate( $plugins->flatten );
 }
 
-=head1 get_metadata
+=method get_metadata
 
 Emulates Dist::Zilla's internal metadata aggregation and does it all again.
 
