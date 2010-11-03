@@ -1,6 +1,9 @@
 use strict;
 use warnings;
 package Dist::Zilla::Util::EmulatePhase;
+BEGIN {
+  $Dist::Zilla::Util::EmulatePhase::VERSION = '0.01000015';
+}
 
 #ABSTRACT: Nasty tools for probing L<< C<Dist::Zilla>'s|Dist::Zilla >> internal state.
 
@@ -12,14 +15,6 @@ use Sub::Exporter -setup => {
   groups  => [ default => [ qw( -all )]],
 };
 
-=method deduplicate
-
-Internal utility that de-duplicates references by ref-addr alone.
-
-  my $array = [];
-  is_deeply( [ deduplicate( $array, $array ) ],[ $array ] )
-
-=cut
 
 sub deduplicate {
   my ( @args , %seen, @out ) = @_ ;
@@ -32,14 +27,6 @@ sub deduplicate {
   return @out;
 }
 
-=method expand_modname
-
-Internal utility to expand various shorthand notations to full ones.
-
-  expand_modname('-MetaProvider') == 'Dist::Zilla::Role::MetaProvider';
-  expand_modname('=MetaNoIndex')  == 'Dist::Zilla::Plugin::MetaNoIndex';
-
-=cut
 
 sub expand_modname {
   ## no critic ( RegularExpressions::RequireDotMatchAnything RegularExpressions::RequireExtendedFormatting RegularExpressions::RequireLineBoundaryMatching )
@@ -49,19 +36,6 @@ sub expand_modname {
   return $v;
 }
 
-=method get_plugins
-
-Probe Dist::Zilla's plugin registry and get items matching a specification
-
-  my @plugins = get_plugins({
-    zilla     => $self->zilla,
-    with      => [qw( -MetaProvider -SomethingElse     )],
-    skip_with => [qw( -SomethingBadThatIsAMetaProvider )],
-    isa       => [qw( =SomePlugin   =SomeOtherPlugin   )],
-    skip_isa  => [qw( =OurPlugin                       )],
-  });
-
-=cut
 
 sub get_plugins {
   my ( $config ) = @_;
@@ -102,19 +76,6 @@ sub get_plugins {
   return deduplicate( $plugins->flatten );
 }
 
-=method get_metadata
-
-Emulates Dist::Zilla's internal metadata aggregation and does it all again.
-
-  my $metadata = get_metadata({
-    $zilla = $self->zilla,
-     ... more params to get_plugins ...
-     ... ie: ...
-     with => [qw( -MetaProvider )],
-     isa  => [qw( =MetaNoIndex )],
-   });
-
-=cut
 
 sub get_metadata {
   my ( $config ) = @_;
@@ -129,3 +90,68 @@ sub get_metadata {
 }
 
 1;
+
+__END__
+=pod
+
+=head1 NAME
+
+Dist::Zilla::Util::EmulatePhase - Nasty tools for probing L<< C<Dist::Zilla>'s|Dist::Zilla >> internal state.
+
+=head1 VERSION
+
+version 0.01000015
+
+=head1 METHODS
+
+=head2 deduplicate
+
+Internal utility that de-duplicates references by ref-addr alone.
+
+  my $array = [];
+  is_deeply( [ deduplicate( $array, $array ) ],[ $array ] )
+
+=head2 expand_modname
+
+Internal utility to expand various shorthand notations to full ones.
+
+  expand_modname('-MetaProvider') == 'Dist::Zilla::Role::MetaProvider';
+  expand_modname('=MetaNoIndex')  == 'Dist::Zilla::Plugin::MetaNoIndex';
+
+=head2 get_plugins
+
+Probe Dist::Zilla's plugin registry and get items matching a specification
+
+  my @plugins = get_plugins({
+    zilla     => $self->zilla,
+    with      => [qw( -MetaProvider -SomethingElse     )],
+    skip_with => [qw( -SomethingBadThatIsAMetaProvider )],
+    isa       => [qw( =SomePlugin   =SomeOtherPlugin   )],
+    skip_isa  => [qw( =OurPlugin                       )],
+  });
+
+=head2 get_metadata
+
+Emulates Dist::Zilla's internal metadata aggregation and does it all again.
+
+  my $metadata = get_metadata({
+    $zilla = $self->zilla,
+     ... more params to get_plugins ...
+     ... ie: ...
+     with => [qw( -MetaProvider )],
+     isa  => [qw( =MetaNoIndex )],
+   });
+
+=head1 AUTHOR
+
+Kent Fredric <kentnl@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Kent Fredric <kentnl@cpan.org>.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+

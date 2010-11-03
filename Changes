@@ -1,6 +1,4 @@
-Revision history for {{$dist->name}}
-
-{{$NEXT}}
+Revision history for Dist-Zilla-Util-EmulatePhase
 
 0.01000015 2010-11-04 06:57:41 Pacific/Auckland
           First version.
