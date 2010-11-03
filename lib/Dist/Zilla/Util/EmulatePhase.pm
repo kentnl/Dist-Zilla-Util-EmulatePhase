@@ -13,7 +13,7 @@ use Sub::Exporter -setup => {
 
 =head1 deduplicate
 
-Internal utility that de-duplicates references by ref-addr alone. 
+Internal utility that de-duplicates references by ref-addr alone.
 
   my $array = [];
   is_deeply( [ deduplicate( $array, $array ) ],[ $array ] )
@@ -24,8 +24,8 @@ sub deduplicate {
   my ( @args , %seen, @out ) = @_ ;
   @args->each(sub{
     my $a = refaddr($_);
-    @out->push( $_ ) unless $seen->exists( $_ );
-    $seen->put( $_ => 1 );
+    @out->push( $_ ) unless %seen->exists( $_ );
+    %seen->put( $_ => 1 );
   });
   return @out;
 }
@@ -39,7 +39,9 @@ Internal utility to expand various shorthand notations to full ones.
 
 =cut
 
-sub expand_modname { 
+## no critic ( Subroutines::RequireArgUnpacking )
+sub expand_modname {
+  ## no critic ( RegularExpressions::RequireDotMatchAnything RegularExpressions::RequireExtendedFormatting RegularExpressions::RequireLineBoundaryMatching )
   $_[0] =~ s/^-/Dist::Zilla::Role::/;
   $_[0] =~ s/^=/Dist::Zilla::Plugin::/;
   return $_[0];
@@ -59,40 +61,40 @@ Probe Dist::Zilla's plugin registry and get items matching a specification
 
 =cut
 
-sub get_plugins { 
-  my ( $config ) = @_; 
+sub get_plugins {
+  my ( $config ) = @_;
   my $zilla = $config->{zilla};
-  
+
   my $plugins = $zilla->plugins();
-  
+
   if ( $config->exists( 'with') ){
-    $plugins = $config->at('with')->map(sub{ 
+    $plugins = $config->at('with')->map(sub{
       my $with = expand_modname(shift);
       return $plugins->grep(sub{ $_->does( $with )  });
     });
   }
-  
+
   if ( $config->exists('skip_with') ){
     $config->at('skip_with')->each(sub{
       my $without = expand_modname(shift);
       $plugins = $plugins->grep(sub{ not $_->does($without) });
     });
   }
-  
+
   if( $config->exists('isa') ){
     $plugins = $config->at('isa')->map(sub{
       my $isa = expand_modname(shift);
       return $plugins->grep(sub{ $_->isa($isa) });
     });
   }
-  
-  if( $config->exists('skip_isa') ){ 
+
+  if( $config->exists('skip_isa') ){
     $config->at('skip_isa')->each(sub{
       my $isnt = expand_modname(shift);
       $plugins = $plugins->grep(sub{ not $_->isa($isnt) });
     });
   }
-  
+
   return deduplicate( $plugins->flatten );
 }
 
@@ -109,12 +111,12 @@ Emulates Dist::Zilla's internal metadata aggregation and does it all again.
    });
 
 =cut
-   
-sub get_metadata { 
-  my ( $config ) = @_; 
-  my @plugins = get_plugins( $config ); 
+
+sub get_metadata {
+  my ( $config ) = @_;
+  my @plugins = get_plugins( $config );
   my $meta = {};
-  @plugins->each(sub{ 
+  @plugins->each(sub{
     require Hash::Merge::Simple;
     $meta = Hash::Merge::Simple::merge( $meta,  $_->metdata );
   });
