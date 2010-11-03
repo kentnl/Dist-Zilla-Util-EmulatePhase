@@ -1,5 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.01000015 2010-11-04 06:57:41 Pacific/Auckland
           First version.
 
