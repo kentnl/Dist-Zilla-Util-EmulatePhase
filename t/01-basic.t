@@ -99,14 +99,48 @@ subtest 'get_metadata tests' => sub {
     });
   }, undef, 'get_plugins does not fail' );
   is ( exception {
-    $metadata = get_metadata({
-      zilla => $zilla,
-      with  => [qw( -MetaProvider )],
-    });
+    $metadata = get_metadata({ zilla => $zilla });
   }, undef, 'get_metadata does not fail' );
   is( ref $metadata , 'HASH', 'metadata is a hash' );
   is( ref $metadata->{resources}, 'HASH', 'metadata.resources is a hash' );
   is( ref $metadata->{resources}->{homepage}, '', 'resources.homepage is scalar' );
   is( $metadata->{resources}->{homepage}, 'http://example.org', 'resources.homepage is input value' );
+};
+
+subtest 'get_prereqs tests' => sub { 
+  my @plugins;
+  my $zilla;
+  my $prereqs;
+
+  is ( exception {
+    $zilla = test_config({
+      dist_root => 'corpus/dist/DZT',
+      ini => [ [ 'Prereqs' => { 'foopackage' => 0 }] , 'MetaConfig', ['MetaResources' => { homepage => 'http://example.org' }]],
+    });
+  }, undef, 'Fake dist setup works');
+  
+  is ( exception {
+    @plugins = get_plugins({
+      zilla => $zilla,
+      with  => [qw( -PrereqSource )],
+    });
+  }, undef, 'get_plugins does not fail' );
+  
+  is ( exception {
+    $prereqs = get_prereqs({ zilla => $zilla });
+  }, undef, 'get_prereqs does not fail' );
+  
+  isa_ok( $prereqs, 'Dist::Zilla::Prereqs' );
+  
+  my $rundeps;
+  
+  is ( exception {
+    $rundeps = $prereqs->requirements_for( 'runtime', 'requires' );
+  }, undef, 'requirements_for runs' );
+  
+  isa_ok( $rundeps, 'Version::Requirements' );
+  isa_ok( $rundeps->as_string_hash, 'HASH' );
+  ok( defined $rundeps->as_string_hash->{foopackage}, 'foopackage dep exists' );
+  is( $rundeps->as_string_hash->{foopackage}, 0 , 'foopackage depend is on v 0' );
 };
 done_testing;

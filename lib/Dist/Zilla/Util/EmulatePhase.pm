@@ -8,7 +8,7 @@ use Scalar::Util qw( refaddr );
 use Try::Tiny;
 use Moose::Autobox;
 use Sub::Exporter -setup => {
-  exports => [ qw( deduplicate expand_modname get_plugins get_metadata )],
+  exports => [ qw( deduplicate expand_modname get_plugins get_metadata get_prereqs)],
   groups  => [ default => [ qw( -all )]],
 };
 
@@ -65,6 +65,10 @@ Probe Dist::Zilla's plugin registry and get items matching a specification
 
 sub get_plugins {
   my ( $config ) = @_;
+  if( not $config or not $config->exists('zilla') ){ 
+    require Carp;
+    Carp::croak('get_plugins({ zilla => $something }) is a minimum requirement');
+  }
   my $zilla = $config->{zilla};
 
   my $plugins = $zilla->plugins();
@@ -106,6 +110,12 @@ sub get_plugins {
 
 Emulates Dist::Zilla's internal metadata aggregation and does it all again.
 
+Minimum Usage:
+
+  my $metadata = get_metadata({ zilla => $self->zilla });
+
+Extended usage:
+
   my $metadata = get_metadata({
     $zilla = $self->zilla,
      ... more params to get_plugins ...
@@ -118,6 +128,12 @@ Emulates Dist::Zilla's internal metadata aggregation and does it all again.
 
 sub get_metadata {
   my ( $config ) = @_;
+  if( not $config or not $config->exists('zilla') ){ 
+    require Carp;
+    Carp::croak('get_metadata({ zilla => $something }) is a minimum requirement');
+  }
+  $config->put( with => [] ) unless $config->exists('with');
+  $config->at('with')->push( '-MetaProvider');
   my @plugins = get_plugins( $config );
   my $meta = {};
   @plugins->each(sub{
@@ -126,6 +142,54 @@ sub get_metadata {
     $meta = Hash::Merge::Simple::merge( $meta,  $value->metadata );
   });
   return $meta;
+}
+
+=method get_prereqs
+
+Emulates Dist::Zilla's internal prereqs aggregation and does it all again.
+
+Minimum Usage:
+
+  my $prereqs = get_prereqs({ zilla => $self->zilla });
+
+Extended usage:
+
+  my $metadata = get_prereqs({
+    $zilla = $self->zilla,
+     ... more params to get_plugins ...
+     ... ie: ...
+     with => [qw( -PrereqSource )],
+     isa  => [qw( =AutoPrereqs )],
+   });
+
+=cut
+
+sub get_prereqs { 
+  my ( $config ) = @_;
+  if( not $config or not $config->exists('zilla') ){ 
+    require Carp;
+    Carp::croak('get_prereqs({ zilla => $something }) is a minimum requirement');
+  }
+
+  $config->put( with => [] ) unless $config->exists('with');
+  $config->at('with')->push( '-PrereqSource');
+  my @plugins    = get_plugins( $config );
+  # This is a bit nasty, because prereqs call back into their data and mess with zilla :/
+  require Dist::Zilla::Util::EmulatePhase::PrereqCollector;
+  my $zilla = Dist::Zilla::Util::EmulatePhase::PrereqCollector->new();
+  @plugins->each(sub{ 
+    my ( $index, $value ) = @_ ; 
+    { # subverting!
+      local $value->{zilla} = $zilla;
+      $value->register_prereqs;
+    }
+    if ( refaddr( $zilla ) eq refaddr( $value->{zilla} ) ){
+      require Carp;
+      Carp::croak("Zilla did not reset itself");
+    }
+  });
+  $zilla->prereqs->finalize;
+  return $zilla->prereqs;
 }
 
 1;
