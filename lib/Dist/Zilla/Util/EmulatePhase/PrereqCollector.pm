@@ -12,7 +12,7 @@ has prereqs => (
   isa => 'Dist::Zilla::Prereqs',
   init_arg => undef,
   default => sub { Dist::Zilla::Prereqs->new },
-  handles => [ qw( register_prereqs )], 
+  handles => [ qw( register_prereqs )],
 );
 
 __PACKAGE__->meta->make_immutable;

@@ -65,7 +65,7 @@ Probe Dist::Zilla's plugin registry and get items matching a specification
 
 sub get_plugins {
   my ( $config ) = @_;
-  if( not $config or not $config->exists('zilla') ){ 
+  if( not $config or not $config->exists('zilla') ){
     require Carp;
     Carp::croak('get_plugins({ zilla => $something }) is a minimum requirement');
   }
@@ -128,7 +128,7 @@ Extended usage:
 
 sub get_metadata {
   my ( $config ) = @_;
-  if( not $config or not $config->exists('zilla') ){ 
+  if( not $config or not $config->exists('zilla') ){
     require Carp;
     Carp::croak('get_metadata({ zilla => $something }) is a minimum requirement');
   }
@@ -164,9 +164,9 @@ Extended usage:
 
 =cut
 
-sub get_prereqs { 
+sub get_prereqs {
   my ( $config ) = @_;
-  if( not $config or not $config->exists('zilla') ){ 
+  if( not $config or not $config->exists('zilla') ){
     require Carp;
     Carp::croak('get_prereqs({ zilla => $something }) is a minimum requirement');
   }
@@ -177,8 +177,8 @@ sub get_prereqs {
   # This is a bit nasty, because prereqs call back into their data and mess with zilla :/
   require Dist::Zilla::Util::EmulatePhase::PrereqCollector;
   my $zilla = Dist::Zilla::Util::EmulatePhase::PrereqCollector->new();
-  @plugins->each(sub{ 
-    my ( $index, $value ) = @_ ; 
+  @plugins->each(sub{
+    my ( $index, $value ) = @_ ;
     { # subverting!
       local $value->{zilla} = $zilla;
       $value->register_prereqs;
