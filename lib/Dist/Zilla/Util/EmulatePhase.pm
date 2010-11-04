@@ -67,6 +67,7 @@ sub get_plugins {
   my ( $config ) = @_;
   if( not $config or not $config->exists('zilla') ){
     require Carp;
+    ## no critic (ValuesAndExpressions::RequireInterpolationOfMetachars)
     Carp::croak('get_plugins({ zilla => $something }) is a minimum requirement');
   }
   my $zilla = $config->{zilla};
@@ -130,6 +131,7 @@ sub get_metadata {
   my ( $config ) = @_;
   if( not $config or not $config->exists('zilla') ){
     require Carp;
+    ## no critic (ValuesAndExpressions::RequireInterpolationOfMetachars)
     Carp::croak('get_metadata({ zilla => $something }) is a minimum requirement');
   }
   $config->put( with => [] ) unless $config->exists('with');
@@ -168,6 +170,7 @@ sub get_prereqs {
   my ( $config ) = @_;
   if( not $config or not $config->exists('zilla') ){
     require Carp;
+    ## no critic (ValuesAndExpressions::RequireInterpolationOfMetachars)
     Carp::croak('get_prereqs({ zilla => $something }) is a minimum requirement');
   }
 
@@ -180,6 +183,7 @@ sub get_prereqs {
   @plugins->each(sub{
     my ( $index, $value ) = @_ ;
     { # subverting!
+      ## no critic ( Variables::ProhibitLocalVars )
       local $value->{zilla} = $zilla;
       $value->register_prereqs;
     }
