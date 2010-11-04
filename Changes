@@ -1,5 +1,9 @@
 Revision history for Dist-Zilla-Util-EmulatePhase
 
+0.01000100 2010-11-04 15:33:20 Pacific/Auckland
+          Added get_prereqs to access prereq data and regenerate it 
+          whenever you need to.
+
 0.01000015 2010-11-04 06:57:41 Pacific/Auckland
           First version.
 

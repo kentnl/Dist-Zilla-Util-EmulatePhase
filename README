@@ -3,7 +3,7 @@ NAME
     "Dist::Zilla"'s internal state.
 
 VERSION
-    version 0.01000015
+    version 0.01000100
 
 METHODS
   deduplicate
@@ -34,12 +34,36 @@ METHODS
     Emulates Dist::Zilla's internal metadata aggregation and does it all
     again.
 
+    Minimum Usage:
+
+      my $metadata = get_metadata({ zilla => $self->zilla });
+
+    Extended usage:
+
       my $metadata = get_metadata({
         $zilla = $self->zilla,
          ... more params to get_plugins ...
          ... ie: ...
          with => [qw( -MetaProvider )],
          isa  => [qw( =MetaNoIndex )],
+       });
+
+  get_prereqs
+    Emulates Dist::Zilla's internal prereqs aggregation and does it all
+    again.
+
+    Minimum Usage:
+
+      my $prereqs = get_prereqs({ zilla => $self->zilla });
+
+    Extended usage:
+
+      my $metadata = get_prereqs({
+        $zilla = $self->zilla,
+         ... more params to get_plugins ...
+         ... ie: ...
+         with => [qw( -PrereqSource )],
+         isa  => [qw( =AutoPrereqs )],
        });
 
 AUTHOR

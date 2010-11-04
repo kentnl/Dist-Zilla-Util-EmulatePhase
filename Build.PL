@@ -23,17 +23,21 @@ my %module_build_args = (
     'Kent Fredric <kentnl@cpan.org>'
   ],
   'dist_name' => 'Dist-Zilla-Util-EmulatePhase',
-  'dist_version' => '0.01000015',
+  'dist_version' => '0.01000100',
   'license' => 'perl',
   'module_name' => 'Dist::Zilla::Util::EmulatePhase',
   'recommends' => {},
   'recursive_test_files' => 1,
   'requires' => {
+    'Carp' => '0',
+    'Dist::Zilla::Prereqs' => '0',
     'Hash::Merge::Simple' => '0',
+    'Moose' => '0',
     'Moose::Autobox' => '0',
     'Scalar::Util' => '0',
     'Sub::Exporter' => '0',
-    'Try::Tiny' => '0'
+    'Try::Tiny' => '0',
+    'namespace::autoclean' => '0'
   },
   'script_files' => []
 );
