@@ -189,7 +189,7 @@ sub get_prereqs {
     }
     if ( refaddr( $zilla ) eq refaddr( $value->{zilla} ) ){
       require Carp;
-      Carp::croak("Zilla did not reset itself");
+      Carp::croak('Zilla did not reset itself');
     }
   });
   $zilla->prereqs->finalize;
