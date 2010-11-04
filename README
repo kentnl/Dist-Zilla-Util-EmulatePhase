@@ -3,7 +3,7 @@ NAME
     "Dist::Zilla"'s internal state.
 
 VERSION
-    version 0.01000100
+    version 0.01000101
 
 METHODS
   deduplicate

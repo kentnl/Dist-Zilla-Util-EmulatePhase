@@ -22,10 +22,10 @@ name: Dist-Zilla-Util-EmulatePhase
 provides:
   Dist::Zilla::Util::EmulatePhase:
     file: lib/Dist/Zilla/Util/EmulatePhase.pm
-    version: 0.01000100
+    version: 0.01000101
   Dist::Zilla::Util::EmulatePhase::PrereqCollector:
     file: lib/Dist/Zilla/Util/EmulatePhase/PrereqCollector.pm
-    version: 0.01000100
+    version: 0.01000101
 requires:
   Carp: 0
   Dist::Zilla::Prereqs: 0
@@ -39,7 +39,7 @@ requires:
 resources:
   homepage: http://github.com/kentfredric/Dist-Zilla-Util-EmulatePhase/tree
   repository: git://github.com/kentfredric/Dist-Zilla-Util-EmulatePhase.git
-version: 0.01000100
+version: 0.01000101
 x_BuiltWith:
   modules: {}
   perl: 5.012002

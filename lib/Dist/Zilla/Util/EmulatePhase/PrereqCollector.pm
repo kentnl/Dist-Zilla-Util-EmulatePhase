@@ -3,13 +3,19 @@ use warnings;
 
 package Dist::Zilla::Util::EmulatePhase::PrereqCollector;
 BEGIN {
-  $Dist::Zilla::Util::EmulatePhase::PrereqCollector::VERSION = '0.01000100';
+  $Dist::Zilla::Util::EmulatePhase::PrereqCollector::VERSION = '0.01000101';
 }
 #ABSTRACT: A dummy Dist::Zilla to fake a 'prereq' object on.
 
 use Moose;
 use namespace::autoclean;
 use Dist::Zilla::Prereqs;
+
+has shadow_zilla => (
+  is => 'ro',
+  isa => 'Ref',
+  required => 1,
+);
 
 has prereqs => (
   is => 'ro',
@@ -18,6 +24,11 @@ has prereqs => (
   default => sub { Dist::Zilla::Prereqs->new },
   handles => [ qw( register_prereqs )],
 );
+
+## no critic ( Subroutines::RequireArgUnpacking )
+sub find_files {
+  return shift->shadow_zilla->find_files( @_ );
+}
 
 no Moose;
 __PACKAGE__->meta->make_immutable;
@@ -31,7 +42,13 @@ Dist::Zilla::Util::EmulatePhase::PrereqCollector - A dummy Dist::Zilla to fake a
 
 =head1 VERSION
 
-version 0.01000100
+version 0.01000101
+
+=head1 METHODS
+
+=head2 find_files
+
+L<< C<Dist::Zilla>'s C<find_files>|Dist::Zilla/find_files >> proxy.
 
 =head1 AUTHOR
 

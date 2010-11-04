@@ -23,7 +23,7 @@ my %module_build_args = (
     'Kent Fredric <kentnl@cpan.org>'
   ],
   'dist_name' => 'Dist-Zilla-Util-EmulatePhase',
-  'dist_version' => '0.01000100',
+  'dist_version' => '0.01000101',
   'license' => 'perl',
   'module_name' => 'Dist::Zilla::Util::EmulatePhase',
   'recommends' => {},

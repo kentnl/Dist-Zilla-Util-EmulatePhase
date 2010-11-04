@@ -1,5 +1,8 @@
 Revision history for Dist-Zilla-Util-EmulatePhase
 
+0.01000101 2010-11-04 16:15:07 Pacific/Auckland
+          Added shadow_zilla and ->find_files to prereqcollector so that AutoPrereq works.
+
 0.01000100 2010-11-04 15:33:20 Pacific/Auckland
           Added get_prereqs to access prereq data and regenerate it 
           whenever you need to.

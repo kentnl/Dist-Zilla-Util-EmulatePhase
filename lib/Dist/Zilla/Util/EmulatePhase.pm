@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Dist::Zilla::Util::EmulatePhase;
 BEGIN {
-  $Dist::Zilla::Util::EmulatePhase::VERSION = '0.01000100';
+  $Dist::Zilla::Util::EmulatePhase::VERSION = '0.01000101';
 }
 
 #ABSTRACT: Nasty tools for probing L<< C<Dist::Zilla>'s|Dist::Zilla >> internal state.
@@ -115,7 +115,9 @@ sub get_prereqs {
   my @plugins    = get_plugins( $config );
   # This is a bit nasty, because prereqs call back into their data and mess with zilla :/
   require Dist::Zilla::Util::EmulatePhase::PrereqCollector;
-  my $zilla = Dist::Zilla::Util::EmulatePhase::PrereqCollector->new();
+  my $zilla = Dist::Zilla::Util::EmulatePhase::PrereqCollector->new(
+    shadow_zilla  => $config->{zilla}
+  );
   @plugins->each(sub{
     my ( $index, $value ) = @_ ;
     { # subverting!
@@ -143,7 +145,7 @@ Dist::Zilla::Util::EmulatePhase - Nasty tools for probing L<< C<Dist::Zilla>'s|D
 
 =head1 VERSION
 
-version 0.01000100
+version 0.01000101
 
 =head1 METHODS
 
