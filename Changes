@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.01000101 2010-11-04 16:15:07 Pacific/Auckland
           Added shadow_zilla and ->find_files to prereqcollector so that AutoPrereq works.
 
 0.01000100 2010-11-04 15:33:20 Pacific/Auckland
