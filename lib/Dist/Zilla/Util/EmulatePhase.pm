@@ -179,7 +179,9 @@ sub get_prereqs {
   my @plugins    = get_plugins( $config );
   # This is a bit nasty, because prereqs call back into their data and mess with zilla :/
   require Dist::Zilla::Util::EmulatePhase::PrereqCollector;
-  my $zilla = Dist::Zilla::Util::EmulatePhase::PrereqCollector->new();
+  my $zilla = Dist::Zilla::Util::EmulatePhase::PrereqCollector->new(
+    shadow_zilla  => $config->{zilla}
+  );
   @plugins->each(sub{
     my ( $index, $value ) = @_ ;
     { # subverting!
