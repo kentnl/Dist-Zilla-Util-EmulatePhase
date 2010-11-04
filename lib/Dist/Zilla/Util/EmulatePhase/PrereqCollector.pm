@@ -22,8 +22,14 @@ has prereqs => (
   handles => [ qw( register_prereqs )],
 );
 
+## no critic ( Subroutines::RequireArgUnpacking )
+=method find_files
+
+L<< C<Dist::Zilla>'s C<find_files>|Dist::Zilla/find_files >> proxy.
+
+=cut
 sub find_files {
-  shift->shadow_zilla->find_files( @_ );
+  return shift->shadow_zilla->find_files( @_ );
 }
 
 no Moose;
