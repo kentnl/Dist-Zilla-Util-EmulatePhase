@@ -3,7 +3,7 @@ use warnings;
 
 package Dist::Zilla::Util::EmulatePhase::PrereqCollector;
 BEGIN {
-  $Dist::Zilla::Util::EmulatePhase::PrereqCollector::VERSION = '0.01000101';
+  $Dist::Zilla::Util::EmulatePhase::PrereqCollector::VERSION = '0.01000515';
 }
 #ABSTRACT: A dummy Dist::Zilla to fake a 'prereq' object on.
 
@@ -42,7 +42,7 @@ Dist::Zilla::Util::EmulatePhase::PrereqCollector - A dummy Dist::Zilla to fake a
 
 =head1 VERSION
 
-version 0.01000101
+version 0.01000515
 
 =head1 METHODS
 

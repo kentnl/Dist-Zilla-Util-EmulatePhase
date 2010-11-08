@@ -1,5 +1,9 @@
 Revision history for Dist-Zilla-Util-EmulatePhase
 
+0.01000515 2010-11-09 06:06:39 Pacific/Auckland
+          Depend on newer Test::Simple because subtest() can work wrong without it.
+          Depend on newer Util::Test::KENTNL
+
 0.01000101 2010-11-04 16:15:07 Pacific/Auckland
           Added shadow_zilla and ->find_files to prereqcollector so that AutoPrereq works.
 

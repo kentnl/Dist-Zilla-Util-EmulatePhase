@@ -7,13 +7,13 @@ use Module::Build 0.3601;
 
 my %module_build_args = (
   'build_requires' => {
-    'Dist::Zilla::Util::Test::KENTNL' => '0.01000011',
+    'Dist::Zilla::Util::Test::KENTNL' => '0.01000510',
     'English' => '0',
     'File::Find' => '0',
     'File::Temp' => '0',
     'Module::Build' => '0.3601',
-    'Test::Fatal' => '0',
-    'Test::More' => '0.88'
+    'Test::Fatal' => '0.003',
+    'Test::More' => '0.96'
   },
   'configure_requires' => {
     'Module::Build' => '0.3601'
@@ -23,7 +23,7 @@ my %module_build_args = (
     'Kent Fredric <kentnl@cpan.org>'
   ],
   'dist_name' => 'Dist-Zilla-Util-EmulatePhase',
-  'dist_version' => '0.01000101',
+  'dist_version' => '0.01000515',
   'license' => 'perl',
   'module_name' => 'Dist::Zilla::Util::EmulatePhase',
   'recommends' => {},

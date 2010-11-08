@@ -50,23 +50,23 @@
       },
       "test" : {
          "requires" : {
-            "Dist::Zilla::Util::Test::KENTNL" : "0.01000011",
+            "Dist::Zilla::Util::Test::KENTNL" : "0.01000510",
             "English" : 0,
             "File::Find" : 0,
             "File::Temp" : 0,
-            "Test::Fatal" : 0,
-            "Test::More" : "0.88"
+            "Test::Fatal" : "0.003",
+            "Test::More" : "0.96"
          }
       }
    },
    "provides" : {
       "Dist::Zilla::Util::EmulatePhase" : {
          "file" : "lib/Dist/Zilla/Util/EmulatePhase.pm",
-         "version" : "0.01000101"
+         "version" : "0.01000515"
       },
       "Dist::Zilla::Util::EmulatePhase::PrereqCollector" : {
          "file" : "lib/Dist/Zilla/Util/EmulatePhase/PrereqCollector.pm",
-         "version" : "0.01000101"
+         "version" : "0.01000515"
       }
    },
    "release_status" : "stable",
@@ -78,9 +78,26 @@
          "web" : "http://github.com/kentfredric/Dist-Zilla-Util-EmulatePhase/tree"
       }
    },
-   "version" : "0.01000101",
+   "version" : "0.01000515",
    "x_BuiltWith" : {
-      "modules" : {},
+      "modules" : {
+         "Carp" : "1.17",
+         "Dist::Zilla::PluginBundle::KENTNL" : "0.01017322",
+         "Dist::Zilla::PluginBundle::KENTNL::Lite" : "0.01000002",
+         "Dist::Zilla::Prereqs" : "4.102342",
+         "Dist::Zilla::Util::Test::KENTNL" : "0.01000510",
+         "File::Temp" : "0.22",
+         "Hash::Merge::Simple" : "0.05",
+         "Module::Build" : "0.3607",
+         "Moose" : "1.17",
+         "Moose::Autobox" : "0.11",
+         "Scalar::Util" : "1.23",
+         "Sub::Exporter" : "0.982",
+         "Test::Fatal" : "0.003",
+         "Test::More" : "0.96",
+         "Try::Tiny" : "0.07",
+         "namespace::autoclean" : "0.11"
+      },
       "perl" : "5.012002",
       "platform" : "linux",
       "uname" : "Linux 2.6.36-gentoo x86_64 GenuineIntel GNU/Linux\n"
@@ -146,7 +163,7 @@
          {
             "class" : "Dist::Zilla::Plugin::MetaProvides::Package",
             "name" : "@KENTNL/MetaProvides::Package",
-            "version" : "1.11044404"
+            "version" : "1.12044908"
          },
          {
             "class" : "Dist::Zilla::Plugin::MetaJSON",
@@ -235,12 +252,12 @@
                }
             },
             "name" : "@KENTNL/MetaData::BuiltWith",
-            "version" : "0.01005122"
+            "version" : "0.01014716"
          },
          {
             "class" : "Dist::Zilla::Plugin::CompileTests",
             "name" : "@KENTNL/CompileTests",
-            "version" : "1.101800"
+            "version" : "1.103030"
          },
          {
             "class" : "Dist::Zilla::Plugin::CriticTests",
@@ -336,17 +353,6 @@
             "class" : "Dist::Zilla::Plugin::Twitter",
             "name" : "@KENTNL/Twitter",
             "version" : "0.009"
-         },
-         {
-            "class" : "Dist::Zilla::Plugin::Prereqs",
-            "config" : {
-               "Dist::Zilla::Plugin::Prereqs" : {
-                  "phase" : "runtime",
-                  "type" : "requires"
-               }
-            },
-            "name" : "Prereqs",
-            "version" : "4.102342"
          },
          {
             "class" : "Dist::Zilla::Plugin::FinderCode",
