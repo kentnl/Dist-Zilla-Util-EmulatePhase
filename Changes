@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.01000515 2010-11-09 06:06:39 Pacific/Auckland
           Depend on newer Test::Simple because subtest() can work wrong without it.
           Depend on newer Util::Test::KENTNL
 
