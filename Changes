@@ -2,6 +2,7 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
           Depend on newer Test::Simple because subtest() can work wrong without it.
+          Depend on newer Util::Test::KENTNL
 
 0.01000101 2010-11-04 16:15:07 Pacific/Auckland
           Added shadow_zilla and ->find_files to prereqcollector so that AutoPrereq works.
