@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.01003312 2010-12-06 03:48:13 Pacific/Auckland
           Permit MakeMaker to call zilla->_share_dir_map on our shadow-zilla
           during pre-req collection. It should preferably be avoided, but this is needed
           for now to make it work. ( Reported by Apocalypse on IRC ).
