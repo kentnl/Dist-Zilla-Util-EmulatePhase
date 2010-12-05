@@ -32,7 +32,7 @@ sub find_files {
   return shift->shadow_zilla->find_files( @_ );
 }
 
-## no critic ( Subroutines::RequireArgUnpacking )
+## no critic ( Subroutines::RequireArgUnpacking, Subroutines::ProhibitUnusedPrivateSubroutines, Subroutines::ProtectPrivateSubs )
 =method _share_dir_map
 
 L<< C<Dist::Zilla>'s C<_share_dir_map>|Dist::Zilla/_share_dir_map >> proxy.
@@ -44,7 +44,7 @@ as the behaviour it is wrapping probably shouldn't be done like this.
 sub _share_dir_map {
   my $self = shift;
   require Carp;
-  Carp::carp("[Dist::Zilla::Util::EmulatePhase] Call to \$self->zilla->_share_dir_map should be avoided");
+  Carp::carp('[Dist::Zilla::Util::EmulatePhase] Call to self->zilla->_share_dir_map should be avoided');
   return $self->shadow_zilla->_share_dir_map( @_ );
 }
 
