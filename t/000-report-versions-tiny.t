@@ -45,12 +45,12 @@ sub pmver {
     }
 
     # So, we should be good, right?
-    return sprintf('%-40s => %-10s%-15s%s', $module, $pmver, $wanted, "\n");
+    return sprintf('%-45s => %-10s%-15s%s', $module, $pmver, $wanted, "\n");
 }
 
 eval { $v .= pmver('Carp','any version') };
-eval { $v .= pmver('Dist::Zilla::PluginBundle::KENTNL','0.01017119') };
-eval { $v .= pmver('Dist::Zilla::PluginBundle::KENTNL::Lite','0.01009803') };
+eval { $v .= pmver('Dist::Zilla::PluginBundle::Author::KENTNL','1.0.0') };
+eval { $v .= pmver('Dist::Zilla::PluginBundle::Author::KENTNL::Lite','0.01009803') };
 eval { $v .= pmver('Dist::Zilla::Prereqs','any version') };
 eval { $v .= pmver('Dist::Zilla::Util::Test::KENTNL','0.01000510') };
 eval { $v .= pmver('English','any version') };

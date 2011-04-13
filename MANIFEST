@@ -1,3 +1,4 @@
+.perltidyrc
 Build.PL
 Changes
 LICENSE
@@ -14,10 +15,10 @@ t/000-report-versions-tiny.t
 t/01-basic.t
 t/02-makemaker-sharedir.t
 t/author-critic.t
+t/release-cpan-changes.t
 t/release-distmeta.t
 t/release-eol.t
 t/release-kwalitee.t
 t/release-pod-coverage.t
 t/release-pod-syntax.t
-t/release-portability.t
 weaver.ini

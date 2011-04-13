@@ -1,21 +1,38 @@
 Revision history for Dist-Zilla-Util-EmulatePhase
 
-0.01003312 2010-12-06 03:48:13 Pacific/Auckland
-          Permit MakeMaker to call zilla->_share_dir_map on our shadow-zilla
-          during pre-req collection. It should preferably be avoided, but this is needed
-          for now to make it work. ( Reported by Apocalypse on IRC ).
+0.01016513 2011-04-13T15:09:11Z
+ - Maintenance only release.
 
-0.01000515 2010-11-09 06:06:39 Pacific/Auckland
-          Depend on newer Test::Simple because subtest() can work wrong without it.
-          Depend on newer Util::Test::KENTNL
+ [Dependencies:Devel]
+ - Move from @KENTNL to @Author::KENTNL
 
-0.01000101 2010-11-04 16:15:07 Pacific/Auckland
-          Added shadow_zilla and ->find_files to prereqcollector so that AutoPrereq works.
+ [Packaging]
+ - Move to @Author::KENTNL
+ - Ship perltidyrc
+ - Rework Changes for CPAN::Changes.
 
-0.01000100 2010-11-04 15:33:20 Pacific/Auckland
-          Added get_prereqs to access prereq data and regenerate it 
-          whenever you need to.
+ [Tests]
+ - Drop portability tests
+ - Add CPAN::Changes tests
 
-0.01000015 2010-11-04 06:57:41 Pacific/Auckland
-          First version.
+0.01003312 2010-12-05T14:48:13Z
+ - Permit MakeMaker to call zilla->_share_dir_map on our shadow-zilla
+   during pre-req collection. It should preferably be avoided, but this is
+   needed for now to make it work. ( Reported by Apocalypse on IRC ).
+
+0.01000515 2010-11-08T17:06:39Z
+ - Depend on newer Test::Simple because subtest() can work wrong without
+   it.
+ - Depend on newer Util::Test::KENTNL
+
+0.01000101 2010-11-04T03:15:07Z
+ - Added shadow_zilla and ->find_files to prereqcollector so that
+   AutoPrereq works.
+
+0.01000100 2010-11-04T02:33:20Z
+ - Added get_prereqs to access prereq data and regenerate it whenever you
+   need to.
+
+0.01000015 2010-11-03T17:57:41Z
+ - First version.
 

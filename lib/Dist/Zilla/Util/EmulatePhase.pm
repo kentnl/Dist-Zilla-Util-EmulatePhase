@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Dist::Zilla::Util::EmulatePhase;
 BEGIN {
-  $Dist::Zilla::Util::EmulatePhase::VERSION = '0.01003312';
+  $Dist::Zilla::Util::EmulatePhase::VERSION = '0.01016513';
 }
 
 #ABSTRACT: Nasty tools for probing L<< C<Dist::Zilla>'s|Dist::Zilla >> internal state.
@@ -145,7 +145,7 @@ Dist::Zilla::Util::EmulatePhase - Nasty tools for probing L<< C<Dist::Zilla>'s|D
 
 =head1 VERSION
 
-version 0.01003312
+version 0.01016513
 
 =head1 METHODS
 
@@ -217,7 +217,7 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Kent Fredric <kentnl@cpan.org>.
+This software is copyright (c) 2011 by Kent Fredric <kentnl@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
