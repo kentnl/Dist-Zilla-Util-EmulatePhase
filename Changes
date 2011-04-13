@@ -1,8 +1,18 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ - Maintenance only release.
+
  [Packaging]
  - Move to @Author::KENTNL
+ - Ship perltidyrc
+
+ [Tests]
+ - Drop portability tests
+ - Add CPAN::Changes tests
+
+ [Dependencies:Devel]
+ - Move from @KENTNL to @Author::KENTNL
 
 0.01003312 2010-12-06 03:48:13 Pacific/Auckland
           Permit MakeMaker to call zilla->_share_dir_map on our shadow-zilla
