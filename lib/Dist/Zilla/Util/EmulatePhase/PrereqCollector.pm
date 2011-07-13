@@ -3,8 +3,9 @@ use warnings;
 
 package Dist::Zilla::Util::EmulatePhase::PrereqCollector;
 BEGIN {
-  $Dist::Zilla::Util::EmulatePhase::PrereqCollector::VERSION = '0.01016513';
+  $Dist::Zilla::Util::EmulatePhase::PrereqCollector::VERSION = '0.01025800';
 }
+
 #ABSTRACT: A dummy Dist::Zilla to fake a 'prereq' object on.
 
 use Moose;
@@ -12,30 +13,55 @@ use namespace::autoclean;
 use Dist::Zilla::Prereqs;
 
 has shadow_zilla => (
-  is => 'ro',
-  isa => 'Ref',
+  is       => 'ro',
+  isa      => 'Ref',
   required => 1,
 );
 
 has prereqs => (
-  is => 'ro',
-  isa => 'Dist::Zilla::Prereqs',
+  is       => 'ro',
+  isa      => 'Dist::Zilla::Prereqs',
   init_arg => undef,
-  default => sub { Dist::Zilla::Prereqs->new },
-  handles => [ qw( register_prereqs )],
+  default  => sub { Dist::Zilla::Prereqs->new },
+  handles  => [qw( register_prereqs )],
 );
 
 ## no critic ( Subroutines::RequireArgUnpacking )
+
+
 sub find_files {
-  return shift->shadow_zilla->find_files( @_ );
+  return shift->shadow_zilla->find_files(@_);
 }
 
 ## no critic ( Subroutines::RequireArgUnpacking, Subroutines::ProhibitUnusedPrivateSubroutines, Subroutines::ProtectPrivateSubs )
+
+
+my $white_list = [ [ 'Dist::Zilla::Plugin::MakeMaker', 'Dist::Zilla::Plugin::MakeMaker::register_prereqs' ] ];
+
+sub _is_white_listed {
+  my ( $self, $package, $subroutine ) = @_;
+  for my $list_rule ( @{$white_list} ) {
+    next unless $package->isa( $list_rule->[0] );
+    next unless $subroutine eq $list_rule->[1];
+    return 1;
+  }
+  return;
+}
+
 sub _share_dir_map {
-  my $self = shift;
+  my $self       = shift;
+  my $package    = [ caller 0 ]->[0];
+  ## no critic (ProhibitMagicNumbers)
+  my $subroutine = [ caller 1 ]->[3];
+
+  if ( $self->_is_white_listed( $package, $subroutine ) ) {
+    return $self->shadow_zilla->_share_dir_map(@_);
+  }
+
   require Carp;
-  Carp::carp('[Dist::Zilla::Util::EmulatePhase] Call to self->zilla->_share_dir_map should be avoided');
-  return $self->shadow_zilla->_share_dir_map( @_ );
+  Carp::croak( "[Dist::Zilla::Util::EmulatePhase] Call to self->zilla->_share_dir_map should be avoided\n"
+      . "  ... and your package/sub ( $package :: $subroutine ) is not listed in the WhiteList\n"
+      . "  ... Please try eliminate this call to a private method or request it being whitelisted\n" );
 }
 
 no Moose;
@@ -51,7 +77,7 @@ Dist::Zilla::Util::EmulatePhase::PrereqCollector - A dummy Dist::Zilla to fake a
 
 =head1 VERSION
 
-version 0.01016513
+version 0.01025800
 
 =head1 METHODS
 

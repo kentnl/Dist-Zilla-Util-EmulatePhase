@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Dist::Zilla::Util::EmulatePhase;
 BEGIN {
-  $Dist::Zilla::Util::EmulatePhase::VERSION = '0.01016513';
+  $Dist::Zilla::Util::EmulatePhase::VERSION = '0.01025800';
 }
 
 #ABSTRACT: Nasty tools for probing L<< C<Dist::Zilla>'s|Dist::Zilla >> internal state.
@@ -145,7 +145,7 @@ Dist::Zilla::Util::EmulatePhase - Nasty tools for probing L<< C<Dist::Zilla>'s|D
 
 =head1 VERSION
 
-version 0.01016513
+version 0.01025800
 
 =head1 METHODS
 

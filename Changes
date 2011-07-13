@@ -1,5 +1,17 @@
 Revision history for Dist-Zilla-Util-EmulatePhase
 
+0.01025800 2011-07-13T02:16:46Z
+ [Features]
+ - The warning diagnostic call that triggers when plugins call
+   '_share_dir_map' from register_plugins  has been special-cased with a
+   white-list so that no errors are produced for the MakeMaker plugin and
+   everything else will Carp fatally. Hopefully this doesn't prove a
+   problem for anyone.
+
+ [Packaging]
+ - Updated copyright notice.
+ - METAData updated for GitHub
+
 0.01016513 2011-04-13T15:09:11Z
  - Maintenance only release.
 
