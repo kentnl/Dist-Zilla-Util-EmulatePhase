@@ -61,6 +61,7 @@ sub _is_white_listed {
 sub _share_dir_map {
   my $self       = shift;
   my $package    = [ caller 0 ]->[0];
+  ## no critic (ProhibitMagicNumbers)
   my $subroutine = [ caller 1 ]->[3];
 
   if ( $self->_is_white_listed( $package, $subroutine ) ) {
