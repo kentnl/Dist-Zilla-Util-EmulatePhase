@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.01025800 2011-07-13T02:16:46Z
  [Features]
  - The warning diagnostic call that triggers when plugins call
    '_share_dir_map' from register_plugins  has been special-cased with a
