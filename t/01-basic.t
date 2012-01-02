@@ -201,7 +201,7 @@ subtest 'get_prereqs tests' => sub {
     'requirements_for runs'
   );
 
-  isa_ok( $rundeps,                 'Version::Requirements' );
+  isa_ok( $rundeps,                 'CPAN::Meta::Requirements' );
   isa_ok( $rundeps->as_string_hash, 'HASH' );
   ok( defined $rundeps->as_string_hash->{foopackage}, 'foopackage dep exists' );
   is( $rundeps->as_string_hash->{foopackage}, 0, 'foopackage depend is on v 0' );
