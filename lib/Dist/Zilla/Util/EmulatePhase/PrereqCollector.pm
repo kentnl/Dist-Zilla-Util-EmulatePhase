@@ -3,7 +3,10 @@ use warnings;
 
 package Dist::Zilla::Util::EmulatePhase::PrereqCollector;
 BEGIN {
-  $Dist::Zilla::Util::EmulatePhase::PrereqCollector::VERSION = '0.01025800';
+  $Dist::Zilla::Util::EmulatePhase::PrereqCollector::AUTHORITY = 'cpan:KENTNL';
+}
+{
+  $Dist::Zilla::Util::EmulatePhase::PrereqCollector::VERSION = '0.01025801';
 }
 
 #ABSTRACT: A dummy Dist::Zilla to fake a 'prereq' object on.
@@ -77,7 +80,7 @@ Dist::Zilla::Util::EmulatePhase::PrereqCollector - A dummy Dist::Zilla to fake a
 
 =head1 VERSION
 
-version 0.01025800
+version 0.01025801
 
 =head1 METHODS
 
@@ -98,7 +101,7 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2011 by Kent Fredric <kentnl@cpan.org>.
+This software is copyright (c) 2012 by Kent Fredric <kentnl@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
