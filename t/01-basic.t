@@ -201,7 +201,16 @@ subtest 'get_prereqs tests' => sub {
     'requirements_for runs'
   );
 
-  isa_ok( $rundeps,                 'CPAN::Meta::Requirements' );
+  my $isobj = ref $rundeps and $rundeps->can('isa');
+  my $is_CMR = $rundeps->isa('CPAN::Meta::Requirements');
+  my $is_VR = $rundeps->isa('Version::Requirements');
+
+  ok (  ( $is_CMR or $is_VR ), 'ISA CPAN::Meta::Requirements / Version::Requirements' );
+
+  if ( not $is_CMR and $is_VR ) {
+    diag "WARNING: You still have the deprecated Version::Requirements, upgrading to CPAN::Meta::Requirements is recommended";
+  }
+
   isa_ok( $rundeps->as_string_hash, 'HASH' );
   ok( defined $rundeps->as_string_hash->{foopackage}, 'foopackage dep exists' );
   is( $rundeps->as_string_hash->{foopackage}, 0, 'foopackage depend is on v 0' );
