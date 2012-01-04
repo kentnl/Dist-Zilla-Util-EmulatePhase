@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.01025801 2012-01-04T02:01:25Z
  [Bugfixes]
  - rt#73546 Reported by MITHALDU/Christian Walde with initial patch by
    APOCAL. Thanks.
