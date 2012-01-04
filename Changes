@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ [Packaging]
+ - Migrate to Git Versions
 
 0.01025800 2011-07-13T02:16:46Z
  [Features]
