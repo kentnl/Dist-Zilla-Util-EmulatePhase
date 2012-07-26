@@ -53,8 +53,8 @@ sub get_plugins {
   my $zilla = $config->{zilla};
 
   if ( not $zilla->isa('Dist::Zilla') ) {
-    require Carp;
-    Carp::cluck('get_plugins({ zilla => $something}) is not Dist::Zilla, might be a bug');
+    #require Carp;
+    #Carp::cluck('get_plugins({ zilla => $something}) is not Dist::Zilla, might be a bug');
   }
 
   my $plugins = $zilla->plugins();
