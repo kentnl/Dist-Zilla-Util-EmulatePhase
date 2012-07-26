@@ -1,0 +1,79 @@
+Revision history for Dist-Zilla-Util-EmulatePhase
+
+0.01025802 2012-07-26T15:28:36Z
+
+0.01025801 2012-01-04T02:01:25Z
+ [Bugfixes]
+ - rt#73546 Reported by MITHALDU/Christian Walde with initial patch by
+   APOCAL. Thanks.
+
+ [Dependencies::Added]
+ - requires : strict
+ - requires : warnings
+ - requires : perl 5.6.0
+
+ [Dependencies::Removed]
+ - build_requires : English
+
+ [Interals]
+ - Declares AUTHORITY in all namespaces.
+ - VERSION declaration now not in BEGIN
+
+ [Packaging]
+ - Migrate to Git Versions
+ - Update copyright years/notice formatting.
+ - Author/Release tests now in xt/
+ - Git repository metadata now all https://
+
+ [Tests]
+ - Expect CPAN::Meta::Requirements instead of Version::Requirements
+ - Updated: compile tests.
+
+0.01025800 2011-07-13T02:16:46Z
+ [Features]
+ - The warning diagnostic call that triggers when plugins call
+   '_share_dir_map' from register_plugins  has been special-cased with a
+   white-list so that no errors are produced for the MakeMaker plugin and
+   everything else will Carp fatally. Hopefully this doesn't prove a
+   problem for anyone.
+
+ [Packaging]
+ - Updated copyright notice.
+ - METAData updated for GitHub
+
+0.01016513 2011-04-13T15:09:11Z
+ - Maintenance only release.
+
+ [Dependencies:Devel]
+ - Move from @KENTNL to @Author::KENTNL
+
+ [Packaging]
+ - Move to @Author::KENTNL
+ - Ship perltidyrc
+ - Rework Changes for CPAN::Changes.
+
+ [Tests]
+ - Drop portability tests
+ - Add CPAN::Changes tests
+
+0.01003312 2010-12-05T14:48:13Z
+ - Permit MakeMaker to call zilla->_share_dir_map on our shadow-zilla
+   during pre-req collection. It should preferably be avoided, but this is
+   needed for now to make it work. ( Reported by Apocalypse on IRC ).
+
+0.01000515 2010-11-08T17:06:39Z
+ - Depend on newer Test::Simple because subtest() can work wrong without
+   it.
+ - Depend on newer Util::Test::KENTNL
+
+0.01000101 2010-11-04T03:15:07Z
+ - Added shadow_zilla and ->find_files to prereqcollector so that
+   AutoPrereq works.
+
+0.01000100 2010-11-04T02:33:20Z
+ - Added get_prereqs to access prereq data and regenerate it whenever you
+   need to.
+
+0.01000015 2010-11-03T17:57:41Z
+ - First version.
+

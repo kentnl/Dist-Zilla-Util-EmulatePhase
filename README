@@ -1,0 +1,77 @@
+NAME
+    Dist::Zilla::Util::EmulatePhase - Nasty tools for probing
+    "Dist::Zilla"'s internal state.
+
+VERSION
+    version 0.01025802
+
+METHODS
+  deduplicate
+    Internal utility that de-duplicates references by ref-addr alone.
+
+      my $array = [];
+      is_deeply( [ deduplicate( $array, $array ) ],[ $array ] )
+
+  expand_modname
+    Internal utility to expand various shorthand notations to full ones.
+
+      expand_modname('-MetaProvider') == 'Dist::Zilla::Role::MetaProvider';
+      expand_modname('=MetaNoIndex')  == 'Dist::Zilla::Plugin::MetaNoIndex';
+
+  get_plugins
+    Probe Dist::Zilla's plugin registry and get items matching a
+    specification
+
+      my @plugins = get_plugins({
+        zilla     => $self->zilla,
+        with      => [qw( -MetaProvider -SomethingElse     )],
+        skip_with => [qw( -SomethingBadThatIsAMetaProvider )],
+        isa       => [qw( =SomePlugin   =SomeOtherPlugin   )],
+        skip_isa  => [qw( =OurPlugin                       )],
+      });
+
+  get_metadata
+    Emulates Dist::Zilla's internal metadata aggregation and does it all
+    again.
+
+    Minimum Usage:
+
+      my $metadata = get_metadata({ zilla => $self->zilla });
+
+    Extended usage:
+
+      my $metadata = get_metadata({
+        $zilla = $self->zilla,
+         ... more params to get_plugins ...
+         ... ie: ...
+         with => [qw( -MetaProvider )],
+         isa  => [qw( =MetaNoIndex )],
+       });
+
+  get_prereqs
+    Emulates Dist::Zilla's internal prereqs aggregation and does it all
+    again.
+
+    Minimum Usage:
+
+      my $prereqs = get_prereqs({ zilla => $self->zilla });
+
+    Extended usage:
+
+      my $metadata = get_prereqs({
+        $zilla = $self->zilla,
+         ... more params to get_plugins ...
+         ... ie: ...
+         with => [qw( -PrereqSource )],
+         isa  => [qw( =AutoPrereqs )],
+       });
+
+AUTHOR
+    Kent Fredric <kentnl@cpan.org>
+
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2012 by Kent Fredric <kentnl@cpan.org>.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
+
