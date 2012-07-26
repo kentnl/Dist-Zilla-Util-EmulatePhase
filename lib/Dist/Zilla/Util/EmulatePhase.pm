@@ -1,5 +1,6 @@
 use strict;
 use warnings;
+
 package Dist::Zilla::Util::EmulatePhase;
 
 #ABSTRACT: Nasty tools for probing L<< C<Dist::Zilla>'s|Dist::Zilla >> internal state.
@@ -8,8 +9,8 @@ use Scalar::Util qw( refaddr );
 use Try::Tiny;
 use Moose::Autobox;
 use Sub::Exporter -setup => {
-  exports => [ qw( deduplicate expand_modname get_plugins get_metadata get_prereqs)],
-  groups  => [ default => [ qw( -all )]],
+  exports => [qw( deduplicate expand_modname get_plugins get_metadata get_prereqs)],
+  groups  => [ default => [qw( -all )] ],
 };
 
 =method deduplicate
@@ -22,13 +23,15 @@ Internal utility that de-duplicates references by ref-addr alone.
 =cut
 
 sub deduplicate {
-  my ( @args , %seen, @out ) = @_ ;
-  @args->each(sub{
-    my ( $index, $item ) = @_ ;
-    my $a = refaddr($item);
-    @out->push( $item ) unless %seen->exists( $item );
-    %seen->put( $item => 1 );
-  });
+  my ( @args, %seen, @out ) = @_;
+  @args->each(
+    sub {
+      my ( $index, $item ) = @_;
+      my $a = refaddr($item);
+      @out->push($item) unless %seen->exists($item);
+      %seen->put( $item => 1 );
+    }
+  );
   return @out;
 }
 
@@ -64,8 +67,8 @@ Probe Dist::Zilla's plugin registry and get items matching a specification
 =cut
 
 sub get_plugins {
-  my ( $config ) = @_;
-  if( not $config or not $config->exists('zilla') ){
+  my ($config) = @_;
+  if ( not $config or not $config->exists('zilla') ) {
     require Carp;
     ## no critic (ValuesAndExpressions::RequireInterpolationOfMetachars)
     Carp::croak('get_plugins({ zilla => $something }) is a minimum requirement');
@@ -83,34 +86,42 @@ sub get_plugins {
     return;
   }
 
-  if ( $config->exists( 'with') ){
-    $plugins = $config->at('with')->map(sub{
-      my $with = expand_modname(shift);
-      return $plugins->grep(sub{ $_->does( $with )  })->flatten;
-    });
+  if ( $config->exists('with') ) {
+    $plugins = $config->at('with')->map(
+      sub {
+        my $with = expand_modname(shift);
+        return $plugins->grep( sub { $_->does($with) } )->flatten;
+      }
+    );
   }
 
-  if ( $config->exists('skip_with') ){
-    $config->at('skip_with')->each(sub{
-      my ( $index, $value ) =  @_;
-      my $without = expand_modname($value);
-      $plugins = $plugins->grep(sub{ not $_->does($without) });
-    });
+  if ( $config->exists('skip_with') ) {
+    $config->at('skip_with')->each(
+      sub {
+        my ( $index, $value ) = @_;
+        my $without = expand_modname($value);
+        $plugins = $plugins->grep( sub { not $_->does($without) } );
+      }
+    );
   }
 
-  if( $config->exists('isa') ){
-    $plugins = $config->at('isa')->map(sub{
-      my $isa = expand_modname(shift);
-      return $plugins->grep(sub{ $_->isa($isa) })->flatten;
-    });
+  if ( $config->exists('isa') ) {
+    $plugins = $config->at('isa')->map(
+      sub {
+        my $isa = expand_modname(shift);
+        return $plugins->grep( sub { $_->isa($isa) } )->flatten;
+      }
+    );
   }
 
-  if( $config->exists('skip_isa') ){
-    $config->at('skip_isa')->each(sub{
-      my ( $index, $value ) =  @_;
-      my $isnt = expand_modname($value);
-      $plugins = $plugins->grep(sub{ not $_->isa($isnt) });
-    });
+  if ( $config->exists('skip_isa') ) {
+    $config->at('skip_isa')->each(
+      sub {
+        my ( $index, $value ) = @_;
+        my $isnt = expand_modname($value);
+        $plugins = $plugins->grep( sub { not $_->isa($isnt) } );
+      }
+    );
   }
 
   return deduplicate( $plugins->flatten );
@@ -137,21 +148,23 @@ Extended usage:
 =cut
 
 sub get_metadata {
-  my ( $config ) = @_;
-  if( not $config or not $config->exists('zilla') ){
+  my ($config) = @_;
+  if ( not $config or not $config->exists('zilla') ) {
     require Carp;
     ## no critic (ValuesAndExpressions::RequireInterpolationOfMetachars)
     Carp::croak('get_metadata({ zilla => $something }) is a minimum requirement');
   }
   $config->put( with => [] ) unless $config->exists('with');
-  $config->at('with')->push( '-MetaProvider');
-  my @plugins = get_plugins( $config );
-  my $meta = {};
-  @plugins->each(sub{
-    my ( $index, $value ) = @_ ;
-    require Hash::Merge::Simple;
-    $meta = Hash::Merge::Simple::merge( $meta,  $value->metadata );
-  });
+  $config->at('with')->push('-MetaProvider');
+  my @plugins = get_plugins($config);
+  my $meta    = {};
+  @plugins->each(
+    sub {
+      my ( $index, $value ) = @_;
+      require Hash::Merge::Simple;
+      $meta = Hash::Merge::Simple::merge( $meta, $value->metadata );
+    }
+  );
   return $meta;
 }
 
@@ -176,33 +189,34 @@ Extended usage:
 =cut
 
 sub get_prereqs {
-  my ( $config ) = @_;
-  if( not $config or not $config->exists('zilla') ){
+  my ($config) = @_;
+  if ( not $config or not $config->exists('zilla') ) {
     require Carp;
     ## no critic (ValuesAndExpressions::RequireInterpolationOfMetachars)
     Carp::croak('get_prereqs({ zilla => $something }) is a minimum requirement');
   }
 
   $config->put( with => [] ) unless $config->exists('with');
-  $config->at('with')->push( '-PrereqSource');
-  my @plugins    = get_plugins( $config );
+  $config->at('with')->push('-PrereqSource');
+  my @plugins = get_plugins($config);
+
   # This is a bit nasty, because prereqs call back into their data and mess with zilla :/
   require Dist::Zilla::Util::EmulatePhase::PrereqCollector;
-  my $zilla = Dist::Zilla::Util::EmulatePhase::PrereqCollector->new(
-    shadow_zilla  => $config->{zilla}
+  my $zilla = Dist::Zilla::Util::EmulatePhase::PrereqCollector->new( shadow_zilla => $config->{zilla} );
+  @plugins->each(
+    sub {
+      my ( $index, $value ) = @_;
+      {    # subverting!
+        ## no critic ( Variables::ProhibitLocalVars )
+        local $value->{zilla} = $zilla;
+        $value->register_prereqs;
+      }
+      if ( refaddr($zilla) eq refaddr( $value->{zilla} ) ) {
+        require Carp;
+        Carp::croak('Zilla did not reset itself');
+      }
+    }
   );
-  @plugins->each(sub{
-    my ( $index, $value ) = @_ ;
-    { # subverting!
-      ## no critic ( Variables::ProhibitLocalVars )
-      local $value->{zilla} = $zilla;
-      $value->register_prereqs;
-    }
-    if ( refaddr( $zilla ) eq refaddr( $value->{zilla} ) ){
-      require Carp;
-      Carp::croak('Zilla did not reset itself');
-    }
-  });
   $zilla->prereqs->finalize;
   return $zilla->prereqs;
 }
