@@ -72,7 +72,16 @@ sub get_plugins {
   }
   my $zilla = $config->{zilla};
 
+  if ( not $zilla->isa('Dist::Zilla') ) {
+    require Carp;
+    Carp::cluck('get_plugins({ zilla => $something}) is not Dist::Zilla, might be a bug');
+  }
+
   my $plugins = $zilla->plugins();
+
+  if ( not @{$plugins} ) {
+    return;
+  }
 
   if ( $config->exists( 'with') ){
     $plugins = $config->at('with')->map(sub{

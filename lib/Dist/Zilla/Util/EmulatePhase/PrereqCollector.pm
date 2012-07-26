@@ -35,6 +35,13 @@ sub find_files {
   return shift->shadow_zilla->find_files(@_);
 }
 
+=method plugins
+
+=cut
+
+sub plugins {
+  return [];
+}
 ## no critic ( Subroutines::RequireArgUnpacking, Subroutines::ProhibitUnusedPrivateSubroutines, Subroutines::ProtectPrivateSubs )
 
 =method _share_dir_map
