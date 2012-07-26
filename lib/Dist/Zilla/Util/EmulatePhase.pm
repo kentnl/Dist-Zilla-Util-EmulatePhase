@@ -57,7 +57,13 @@ sub get_plugins {
     #Carp::cluck('get_plugins({ zilla => $something}) is not Dist::Zilla, might be a bug');
   }
 
-  my $plugins = $zilla->plugins();
+  my $plugins = [];
+
+  if ( $zilla->can('plugins') ) {
+    $plugins = $zilla->plugins();
+  } else {
+    return;
+  }
 
   if ( not @{$plugins} ) {
     return;
