@@ -1,6 +1,8 @@
 ﻿Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.01025802 2012-07-28T20:17:35Z
  [Bugfix]
  - Handle some odd cases that turn up when you're working with scary deep
    nested code.
