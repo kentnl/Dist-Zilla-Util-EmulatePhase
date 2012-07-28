@@ -1,6 +1,6 @@
 ﻿Revision history for Dist-Zilla-Util-EmulatePhase
 
-0.01025802 2012-07-28T20:15:20Z
+0.01025802 2012-07-28T20:15:35Z
  [Bugfix]
  - Handle some odd cases that turn up when you're working with scary deep nested code.
  - Handle having a faked zilla passed down to us instead of a real zilla ( ie: when another emulate::phase instance is triggering code triggering emulate phase )
