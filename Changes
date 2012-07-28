@@ -1,6 +1,20 @@
-Revision history for Dist-Zilla-Util-EmulatePhase
+﻿Revision history for Dist-Zilla-Util-EmulatePhase
 
-0.01025802 2012-07-28T19:54:39Z
+0.01025802 2012-07-28T20:15:09Z
+ [Bugfix]
+ - Handle some odd cases that turn up when you're working with scary deep nested code.
+ - Handle having a faked zilla passed down to us instead of a real zilla ( ie: when another emulate::phase instance is triggering code triggering emulate phase )
+ - Prereq collector now has a plugins() method that returns an empty array ref.
+
+ [Dependencies::Changed]
+ - build requires : Module::Build 0.3601 -> 0.4002
+ - configure requires : Module::Build 0.3601 -> 0.4002
+ - develop recommends : Dist::Zilla::PluginBundle::Author::KENTNL::Lite 0.01009803 -> v1.3.0
+ - develop suggests : Dist::Zilla::PluginBundle::Author::KENTNL::Lite v1.2.0 -> v1.4.2
+ - test requires : Test::More 0.96 -> 0.98
+
+ [Internals]
+ - Code has been run through perltidy.
 
 0.01025801 2012-01-04T02:01:25Z
  [Bugfixes]
