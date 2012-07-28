@@ -6,11 +6,11 @@ build_requires:
   Dist::Zilla::Util::Test::KENTNL: 0.01000510
   File::Find: 0
   File::Temp: 0
-  Module::Build: 0.4001
+  Module::Build: 0.4002
   Test::Fatal: 0.003
   Test::More: 0.98
 configure_requires:
-  Module::Build: 0.4001
+  Module::Build: 0.4002
 dynamic_config: 0
 generated_by: 'Dist::Zilla version 4.300020, CPAN::Meta::Converter version 2.120921'
 license: perl
@@ -52,7 +52,7 @@ x_BuiltWith:
     File::Find: 1.20
     File::Temp: 0.22
     Hash::Merge::Simple: 0.051
-    Module::Build: 0.4001
+    Module::Build: 0.4002
     Moose: 2.0603
     Moose::Autobox: 0.12
     Scalar::Util: 1.25
@@ -111,7 +111,7 @@ x_Dist_Zilla:
               - '-i'
             uname_call: uname
       name: '@Author::KENTNL/MetaData::BuiltWith'
-      version: 0.03000000
+      version: 0.03000100
     -
       class: Dist::Zilla::Plugin::Git::GatherDir
       name: '@Author::KENTNL/Git::GatherDir'

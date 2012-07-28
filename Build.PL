@@ -10,12 +10,12 @@ my %module_build_args = (
     "Dist::Zilla::Util::Test::KENTNL" => "0.01000510",
     "File::Find" => 0,
     "File::Temp" => 0,
-    "Module::Build" => "0.4001",
+    "Module::Build" => "0.4002",
     "Test::Fatal" => "0.003",
     "Test::More" => "0.98"
   },
   "configure_requires" => {
-    "Module::Build" => "0.4001"
+    "Module::Build" => "0.4002"
   },
   "dist_abstract" => "Nasty tools for probing L<< C<Dist::Zilla>'s|Dist::Zilla >> internal state.",
   "dist_author" => [
