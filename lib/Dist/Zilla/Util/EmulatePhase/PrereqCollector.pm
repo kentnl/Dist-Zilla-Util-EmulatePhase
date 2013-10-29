@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Util::EmulatePhase::PrereqCollector::AUTHORITY = 'cpan:KENTNL';
 }
 {
-  $Dist::Zilla::Util::EmulatePhase::PrereqCollector::VERSION = '0.01025802';
+  $Dist::Zilla::Util::EmulatePhase::PrereqCollector::VERSION = '0.01025803';
 }
 
 #ABSTRACT: A dummy Dist::Zilla to fake a 'prereq' object on.
@@ -43,7 +43,10 @@ sub plugins {
 ## no critic ( Subroutines::RequireArgUnpacking, Subroutines::ProhibitUnusedPrivateSubroutines, Subroutines::ProtectPrivateSubs )
 
 
-my $white_list = [ [ 'Dist::Zilla::Plugin::MakeMaker', 'Dist::Zilla::Plugin::MakeMaker::register_prereqs' ] ];
+my $white_list = [
+  [ 'Dist::Zilla::Plugin::MakeMaker',          'Dist::Zilla::Plugin::MakeMaker::register_prereqs' ],
+  [ 'Dist::Zilla::Plugin::MakeMaker::Awesome', 'Dist::Zilla::Plugin::MakeMaker::Awesome::register_prereqs' ],
+];
 
 sub _is_white_listed {
   my ( $self, $package, $subroutine ) = @_;
@@ -76,6 +79,7 @@ __PACKAGE__->meta->make_immutable;
 1;
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -84,7 +88,7 @@ Dist::Zilla::Util::EmulatePhase::PrereqCollector - A dummy Dist::Zilla to fake a
 
 =head1 VERSION
 
-version 0.01025802
+version 0.01025803
 
 =head1 METHODS
 
@@ -107,10 +111,9 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by Kent Fredric <kentnl@cpan.org>.
+This software is copyright (c) 2013 by Kent Fredric <kentnl@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
