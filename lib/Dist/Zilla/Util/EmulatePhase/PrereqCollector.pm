@@ -53,7 +53,10 @@ as the behaviour it is wrapping probably shouldn't be done like this.
 
 =cut
 
-my $white_list = [ [ 'Dist::Zilla::Plugin::MakeMaker', 'Dist::Zilla::Plugin::MakeMaker::register_prereqs' ] ];
+my $white_list = [
+  [ 'Dist::Zilla::Plugin::MakeMaker',          'Dist::Zilla::Plugin::MakeMaker::register_prereqs' ],
+  [ 'Dist::Zilla::Plugin::MakeMaker::Awesome', 'Dist::Zilla::Plugin::MakeMaker::Awesome::register_prereqs' ],
+];
 
 sub _is_white_listed {
   my ( $self, $package, $subroutine ) = @_;
