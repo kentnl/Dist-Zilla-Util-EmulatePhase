@@ -1,6 +1,51 @@
 ﻿Revision history for Dist-Zilla-Util-EmulatePhase
 
-0.01025803 2013-10-30T10:50:33Z
+0.01025803 2013-10-31T10:07:35Z
+ [Bugfix]
+ - Add MakeMaker::Awesome to the whitelist
+
+  [Dependencies::Added / develop requires]
+ - Dist::Zilla::PluginBundle::Author::KENTNL 2.000000
+ - Pod::Coverage::TrustPod
+ - Test::CPAN::Changes 0.19
+ - Test::CPAN::Meta
+ - Test::Kwalitee 1.12
+ - Test::Pod 1.41
+ - Test::Pod::Coverage 1.08
+ - version 0.9901
+
+ [Dependencies::Added / develop suggests]
+ - Dist::Zilla::PluginBundle::Author::KENTNL::Lite v1.3.0
+
+ [Dependencies::Added / test requires]
+ - File::Spec
+ - IO::Handle
+ - IPC::Open3
+
+ [Dependencies::Changed / build requires]
+ - Module::Build 0.4002 → 0.4007
+
+ [Dependencies::Changed / configure requires]
+ - Module::Build 0.4002 → 0.4007
+
+ [Dependencies::Changed / test requires]
+ - Test::More 0.98 → 0.99
+
+ [Dependencies::Removed / develop recommends]
+ - Dist::Zilla::PluginBundle::Author::KENTNL::Lite v1.3.0
+
+ [Dependencies::Removed / develop requires]
+ - Dist::Zilla::PluginBundle::Author::KENTNL::Lite
+
+ [Dependencies::Removed / develop suggests]
+ - Dist::Zilla::PluginBundle::Author::KENTNL v1.4.2
+
+ [Dependencies::Removed / test requires]
+ - File::Find
+ - File::Temp
+
+ [Meta]
+ - bugs to github issues
 
 0.01025802 2012-07-28T20:17:35Z
  [Bugfix]
