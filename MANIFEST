@@ -8,6 +8,8 @@ META.json
 META.yml
 README
 dist.ini
+layout/self_structure.dot
+layout/self_structure.png
 lib/Dist/Zilla/Util/EmulatePhase.pm
 lib/Dist/Zilla/Util/EmulatePhase/PrereqCollector.pm
 maint-travis-ci/README.mkdn

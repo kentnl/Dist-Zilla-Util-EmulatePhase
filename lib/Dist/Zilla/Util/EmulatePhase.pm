@@ -20,6 +20,7 @@ use Sub::Exporter -setup => {
 };
 
 
+
 sub deduplicate {
   my ( @args, %seen, @out ) = @_;
   @args->each(
@@ -247,6 +248,16 @@ Extended usage:
      with => [qw( -PrereqSource )],
      isa  => [qw( =AutoPrereqs )],
    });
+
+=begin MetaPOD::JSON v1.1.0
+
+{
+    "namespace":"Dist::Zilla::Util::EmulatePhase",
+    "interface":"exporter"
+}
+
+
+=end MetaPOD::JSON
 
 =head1 AUTHOR
 

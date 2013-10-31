@@ -15,6 +15,7 @@ use Moose;
 use namespace::autoclean;
 use Dist::Zilla::Prereqs;
 
+
 has shadow_zilla => (
   is       => 'ro',
   isa      => 'Ref',
@@ -106,6 +107,17 @@ L<< C<Dist::Zilla>'s C<_share_dir_map>|Dist::Zilla/_share_dir_map >> proxy.
 
 B<WARNING>: This method is provided as a temporary workaround and may eventually disappear,
 as the behaviour it is wrapping probably shouldn't be done like this.
+
+=begin MetaPOD::JSON v1.1.0
+
+{
+    "namespace":"Dist::Zilla::Util::EmulatePhase::PrereqCollector",
+    "interface":"class",
+    "inherits":"Moose::Object"
+}
+
+
+=end MetaPOD::JSON
 
 =head1 AUTHOR
 
