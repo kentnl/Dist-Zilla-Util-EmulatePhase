@@ -13,6 +13,17 @@ use Sub::Exporter -setup => {
   groups  => [ default => [qw( -all )] ],
 };
 
+=begin MetaPOD::JSON v1.1.0
+
+{
+    "namespace":"Dist::Zilla::Util::EmulatePhase",
+    "interface":"exporter"
+}
+
+=end MetaPOD::JSON
+
+=cut
+
 =method deduplicate
 
 Internal utility that de-duplicates references by ref-addr alone.

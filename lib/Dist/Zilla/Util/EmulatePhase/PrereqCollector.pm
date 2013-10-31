@@ -9,6 +9,18 @@ use Moose;
 use namespace::autoclean;
 use Dist::Zilla::Prereqs;
 
+=begin MetaPOD::JSON v1.1.0
+
+{
+    "namespace":"Dist::Zilla::Util::EmulatePhase::PrereqCollector",
+    "interface":"class",
+    "inherits":"Moose::Object"
+}
+
+=end MetaPOD::JSON
+
+=cut
+
 has shadow_zilla => (
   is       => 'ro',
   isa      => 'Ref',
