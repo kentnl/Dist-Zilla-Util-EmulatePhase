@@ -1,6 +1,6 @@
 ﻿Revision history for Dist-Zilla-Util-EmulatePhase
 
-0.01025803 2013-10-31T10:22:19Z
+0.01025803 2013-10-31T10:48:24Z
  [Bugfix]
  - Add MakeMaker::Awesome to the whitelist
 
