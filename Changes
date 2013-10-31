@@ -1,6 +1,8 @@
 ﻿Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.01025803 2013-10-31T12:44:10Z
  [Bugfix]
  - Add MakeMaker::Awesome to the whitelist ( fixes RT#89828 )
 
