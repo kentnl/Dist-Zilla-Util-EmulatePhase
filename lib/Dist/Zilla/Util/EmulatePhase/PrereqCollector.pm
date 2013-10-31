@@ -82,6 +82,8 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Dist::Zilla::Util::EmulatePhase::PrereqCollector - A dummy Dist::Zilla to fake a 'prereq' object on.
