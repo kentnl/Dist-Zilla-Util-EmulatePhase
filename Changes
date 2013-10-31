@@ -47,6 +47,8 @@
  [Documentation]
  - Specify encoding
  - add README.mkdn to dist
+ - add MetaPOD Annotations
+ - add MetaPOD layout
 
  [Meta]
  - bugs to github issues
