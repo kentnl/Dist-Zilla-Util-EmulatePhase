@@ -7,22 +7,17 @@ use Module::Build 0.3601;
 
 my %module_build_args = (
   "build_requires" => {
-    "Dist::Zilla::Util::Test::KENTNL" => "0.01000510",
-    "File::Find" => 0,
-    "File::Temp" => 0,
-    "Module::Build" => "0.4002",
-    "Test::Fatal" => "0.003",
-    "Test::More" => "0.98"
+    "Module::Build" => "0.4007"
   },
   "configure_requires" => {
-    "Module::Build" => "0.4002"
+    "Module::Build" => "0.4007"
   },
   "dist_abstract" => "Nasty tools for probing L<< C<Dist::Zilla>'s|Dist::Zilla >> internal state.",
   "dist_author" => [
     "Kent Fredric <kentnl\@cpan.org>"
   ],
   "dist_name" => "Dist-Zilla-Util-EmulatePhase",
-  "dist_version" => "0.01025802",
+  "dist_version" => "0.01025803",
   "license" => "perl",
   "module_name" => "Dist::Zilla::Util::EmulatePhase",
   "recommends" => {},
@@ -41,9 +36,33 @@ my %module_build_args = (
     "strict" => 0,
     "warnings" => 0
   },
-  "script_files" => []
+  "script_files" => [],
+  "test_requires" => {
+    "Dist::Zilla::Util::Test::KENTNL" => "0.01000510",
+    "File::Spec" => 0,
+    "IO::Handle" => 0,
+    "IPC::Open3" => 0,
+    "Test::Fatal" => "0.003",
+    "Test::More" => "0.99"
+  }
 );
 
+
+my %fallback_build_requires = (
+  "Dist::Zilla::Util::Test::KENTNL" => "0.01000510",
+  "File::Spec" => 0,
+  "IO::Handle" => 0,
+  "IPC::Open3" => 0,
+  "Module::Build" => "0.4007",
+  "Test::Fatal" => "0.003",
+  "Test::More" => "0.99"
+);
+
+
+unless ( eval { Module::Build->VERSION(0.4004) } ) {
+  delete $module_build_args{test_requires};
+  $module_build_args{build_requires} = \%fallback_build_requires;
+}
 
 my $build = Module::Build->new(%module_build_args);
 

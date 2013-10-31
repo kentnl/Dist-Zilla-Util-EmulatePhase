@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Util::EmulatePhase::PrereqCollector::AUTHORITY = 'cpan:KENTNL';
 }
 {
-  $Dist::Zilla::Util::EmulatePhase::PrereqCollector::VERSION = '0.01025802';
+  $Dist::Zilla::Util::EmulatePhase::PrereqCollector::VERSION = '0.01025803';
 }
 
 #ABSTRACT: A dummy Dist::Zilla to fake a 'prereq' object on.
@@ -14,6 +14,7 @@ BEGIN {
 use Moose;
 use namespace::autoclean;
 use Dist::Zilla::Prereqs;
+
 
 has shadow_zilla => (
   is       => 'ro',
@@ -43,7 +44,10 @@ sub plugins {
 ## no critic ( Subroutines::RequireArgUnpacking, Subroutines::ProhibitUnusedPrivateSubroutines, Subroutines::ProtectPrivateSubs )
 
 
-my $white_list = [ [ 'Dist::Zilla::Plugin::MakeMaker', 'Dist::Zilla::Plugin::MakeMaker::register_prereqs' ] ];
+my $white_list = [
+  [ 'Dist::Zilla::Plugin::MakeMaker',          'Dist::Zilla::Plugin::MakeMaker::register_prereqs' ],
+  [ 'Dist::Zilla::Plugin::MakeMaker::Awesome', 'Dist::Zilla::Plugin::MakeMaker::Awesome::register_prereqs' ],
+];
 
 sub _is_white_listed {
   my ( $self, $package, $subroutine ) = @_;
@@ -76,7 +80,10 @@ __PACKAGE__->meta->make_immutable;
 1;
 
 __END__
+
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -84,7 +91,7 @@ Dist::Zilla::Util::EmulatePhase::PrereqCollector - A dummy Dist::Zilla to fake a
 
 =head1 VERSION
 
-version 0.01025802
+version 0.01025803
 
 =head1 METHODS
 
@@ -101,16 +108,26 @@ L<< C<Dist::Zilla>'s C<_share_dir_map>|Dist::Zilla/_share_dir_map >> proxy.
 B<WARNING>: This method is provided as a temporary workaround and may eventually disappear,
 as the behaviour it is wrapping probably shouldn't be done like this.
 
+=begin MetaPOD::JSON v1.1.0
+
+{
+    "namespace":"Dist::Zilla::Util::EmulatePhase::PrereqCollector",
+    "interface":"class",
+    "inherits":"Moose::Object"
+}
+
+
+=end MetaPOD::JSON
+
 =head1 AUTHOR
 
 Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by Kent Fredric <kentnl@cpan.org>.
+This software is copyright (c) 2013 by Kent Fredric <kentnl@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
