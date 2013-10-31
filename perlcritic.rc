@@ -10,4 +10,4 @@ allow_includes = 1
 [CodeLayout::ProhibitTrailingWhitespace]
 
 [Documentation::PodSpelling]
-stop_words = metadata KiokuDB KENTNL de deduplicate addr plugin prereq prereqs
+stop_words = metadata KiokuDB KENTNL de deduplicate addr plugin prereq prereqs behaviour
