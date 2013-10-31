@@ -1,8 +1,8 @@
 ﻿Revision history for Dist-Zilla-Util-EmulatePhase
 
-0.01025803 2013-10-31T12:14:46Z
+0.01025803 2013-10-31T12:44:10Z
  [Bugfix]
- - Add MakeMaker::Awesome to the whitelist
+ - Add MakeMaker::Awesome to the whitelist ( fixes RT#89828 )
 
  [Dependencies::Added / develop requires]
  - Dist::Zilla::PluginBundle::Author::KENTNL 2.000000
