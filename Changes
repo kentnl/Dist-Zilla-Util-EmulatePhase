@@ -2,7 +2,7 @@
 
 {{$NEXT}}
  [Bugfix]
- - Add MakeMaker::Awesome to the whitelist
+ - Add MakeMaker::Awesome to the whitelist ( fixes RT#89828 )
 
  [Dependencies::Added / develop requires]
  - Dist::Zilla::PluginBundle::Author::KENTNL 2.000000
