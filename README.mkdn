@@ -70,6 +70,13 @@ Extended usage:
        isa  => [qw( =AutoPrereqs )],
      });
 
+{
+    "namespace":"Dist::Zilla::Util::EmulatePhase",
+    "interface":"exporter"
+}
+
+
+
 # AUTHOR
 
 Kent Fredric <kentnl@cpan.org>
