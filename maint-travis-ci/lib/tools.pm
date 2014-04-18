@@ -4,6 +4,12 @@ use warnings;
 package tools;
 
 use Cwd qw(cwd);
+use Config;
+
+sub capture_stdout(&) {
+  require Capture::Tiny;
+  goto &Capture::Tiny::capture_stdout;
+}
 
 sub diag {
   my $handle = \*STDERR;
@@ -52,9 +58,11 @@ sub safe_exec {
 
 sub cpanm {
   my (@params) = @_;
+  my $cpanm_lines = 4000;
   my $exit_code = safe_exec_nonfatal( 'cpanm', @params );
   if ( $exit_code != 0 ) {
-    safe_exec( 'tail', '-n', '200', '/home/travis/.cpanm/build.log' );
+    diag("\e[32m cpanm \e[0m failed, showing last \e[31m$cpanm_lines\e[0m lines");
+    safe_exec( 'tail', '-n', $cpanm_lines, '/home/travis/.cpanm/build.log' );
     exit $exit_code;
   }
   return 1;
@@ -76,6 +84,83 @@ sub get_fixes {
   $got_fixes = 1;
 }
 
+my $got_sterile;
+
+sub get_sterile {
+  return if $got_sterile;
+  my $cwd = cwd();
+  chdir '/tmp';
+  my $version = $];
+  safe_exec(
+    'git', 'clone', '--depth=1',
+    '--branch=' . $version,
+    'https://github.com/kentfredric/perl5-sterile.git',
+    'perl5-sterile'
+  );
+  chdir $cwd;
+  $got_sterile = 1;
+}
+my $fixed_up;
+
+sub fixup_sterile {
+  return if $fixed_up;
+  get_sterile();
+  my $cwd = cwd();
+  chdir '/tmp/perl5-sterile';
+  safe_exec( 'bash', 'patch_fixlist.sh', '/home/travis/perl5/perlbrew/perls/' . $ENV{TRAVIS_PERL_VERSION} );
+  chdir $cwd;
+  $fixed_up = 1;
+}
+my $sterile_deployed;
+
+sub deploy_sterile {
+  return if $sterile_deployed;
+  cpanm( '--skip-satisfied', 'Capture::Tiny' );
+  require Capture::Tiny;    # load before we oblitterate everything.
+
+  fixup_sterile();
+  for my $key ( keys %Config ) {
+    next unless $key =~ /(lib|arch)exp$/;
+    my $value = $Config{$key};
+    next unless defined $value;
+    next unless length $value;
+    my $clean_path = '/tmp/perl5-sterile/' . $key;
+    diag("\e[32m?$clean_path\e[0m");
+    if ( -e $clean_path and -d $clean_path ) {
+      diag("\e[31mRsyncing over $value\e[0m");
+      $clean_path =~ s{/?$}{/};
+      $value =~ s{/?$}{/};
+      safe_exec( 'rsync', '-a', '--delete-delay', $clean_path, $value );
+    }
+  }
+  for my $key ( keys %Config ) {
+    next unless $key =~ /(prefix|bin|scriptdir|script)exp$/;
+    my $value = $Config{$key};
+    next unless defined $value;
+    next unless length $value;
+    my $clean_path = '/tmp/perl5-sterile/' . $key;
+    diag("\e[32m?$clean_path\e[0m");
+    if ( -e $clean_path and -d $clean_path ) {
+      diag("\e[31mPre-Cleaning $value\e[0m");
+      my $content = capture_stdout {
+        safe_exec( 'find', $value, '-type', 'f', '-executable', '-print0' );
+      };
+      for my $file ( split /\0/, $content ) {
+        if ( -B $file ) {
+          diag("\e[33m: Protected\e[34m: $file\e[0m");
+          next;
+        }
+        unlink $file;
+        diag("\e[31m: Removed:\e[34m: $file\e[0m");
+      }
+      diag("\e[31mRsyncing over $value\e[0m");
+      $clean_path =~ s{/?$}{/};
+      $value =~ s{/?$}{/};
+      safe_exec( 'rsync', '-a', $clean_path, $value );
+    }
+  }
+}
+
 sub cpanm_fix {
   my (@params) = @_;
   get_fixes();
@@ -89,11 +174,6 @@ sub parse_meta_json {
   $_[0] ||= 'META.json';
   require CPAN::Meta;
   return CPAN::Meta->load_file( $_[0] );
-}
-
-sub capture_stdout(&) {
-  require Capture::Tiny;
-  goto &Capture::Tiny::capture_stdout;
 }
 
 sub import {
@@ -118,6 +198,7 @@ sub import {
   $caller_stash->{cpanm_fix}          = *cpanm_fix;
   $caller_stash->{parse_meta_json}    = *parse_meta_json;
   $caller_stash->{capture_stdout}     = *capture_stdout;
+  $caller_stash->{deploy_sterile}     = *deploy_sterile;
 }
 
 1;
