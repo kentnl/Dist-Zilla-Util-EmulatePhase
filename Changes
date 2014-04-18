@@ -15,6 +15,11 @@
  - Tooling and Testing modules only now depend on the minimum required
  - and the "Latest" versions as per myself are only recommended upgrades.
 
+ [Dependencies::Aggregate]
+ - 5.008 : 184 → 201 : Details https://gist.github.com/kentfredric/11037169
+ - 5.010 : 163 → 184 : Details https://gist.github.com/kentfredric/11036813
+ - 5.019 : 159 → 162 : Details https://gist.github.com/kentfredric/11036128
+
  [Dependencies::Stats]
  - Dependencies changed since 0.01025803, see Changes.deps{,.all,.dev} for
    details
