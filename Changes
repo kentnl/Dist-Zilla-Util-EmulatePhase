@@ -1,6 +1,20 @@
 ﻿Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ [00 Minor]
+ - No signficant changes in the code, but potententially significant
+   packaging changes downstream may care about.
+
+ [01 Version Scheme Change]
+ - Mantissa is moving from 8 to 6 to standardise.
+ - This is the primary reason for 1.xxx as 0.xxxx is unambiguously smaller
+   than 1.xxx
+
+ [02 Toolkit Change]
+ - ExtUtils::MakeMaker is now used instead of Module::Build
+ - Tooling and Testing modules only now depend on the minimum required
+ - and the "Latest" versions as per myself are only recommended upgrades.
+
  [Dependencies::Stats]
  - Dependencies changed since 0.01025803, see Changes.deps{,.all,.dev} for
    details
