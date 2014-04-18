@@ -2,13 +2,7 @@ use strict;
 use warnings;
 
 package Dist::Zilla::Util::EmulatePhase;
-BEGIN {
-  $Dist::Zilla::Util::EmulatePhase::AUTHORITY = 'cpan:KENTNL';
-}
-{
-  $Dist::Zilla::Util::EmulatePhase::VERSION = '0.01025803';
-}
-
+$Dist::Zilla::Util::EmulatePhase::VERSION = '0.01025804';
 #ABSTRACT: Nasty tools for probing L<< C<Dist::Zilla>'s|Dist::Zilla >> internal state.
 
 use Scalar::Util qw( refaddr );
@@ -18,6 +12,24 @@ use Sub::Exporter -setup => {
   exports => [qw( deduplicate expand_modname get_plugins get_metadata get_prereqs)],
   groups  => [ default => [qw( -all )] ],
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -35,6 +47,14 @@ sub deduplicate {
 }
 
 
+
+
+
+
+
+
+
+
 sub expand_modname {
   ## no critic ( RegularExpressions::RequireDotMatchAnything RegularExpressions::RequireExtendedFormatting RegularExpressions::RequireLineBoundaryMatching )
   my $v = shift;
@@ -42,6 +62,19 @@ sub expand_modname {
   $v =~ s/^=/Dist::Zilla::Plugin::/;
   return $v;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 sub get_plugins {
@@ -114,6 +147,25 @@ sub get_plugins {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 sub get_metadata {
   my ($config) = @_;
   if ( not $config or not $config->exists('zilla') ) {
@@ -134,6 +186,25 @@ sub get_metadata {
   );
   return $meta;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 sub get_prereqs {
@@ -183,7 +254,7 @@ Dist::Zilla::Util::EmulatePhase - Nasty tools for probing L<< C<Dist::Zilla>'s|D
 
 =head1 VERSION
 
-version 0.01025803
+version 0.01025804
 
 =head1 METHODS
 
@@ -265,7 +336,7 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Kent Fredric <kentnl@cpan.org>.
+This software is copyright (c) 2014 by Kent Fredric <kentnl@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
