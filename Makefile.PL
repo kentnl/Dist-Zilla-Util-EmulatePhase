@@ -10,7 +10,7 @@ use ExtUtils::MakeMaker 6.30;
 
 
 my %WriteMakefileArgs = (
-  "ABSTRACT" => "Nasty tools for probing L<< C<Dist::Zilla>'s|Dist::Zilla >> internal state.",
+  "ABSTRACT" => "Nasty tools for probing Dist::Zilla's internal state.",
   "AUTHOR" => "Kent Fredric <kentnl\@cpan.org>",
   "BUILD_REQUIRES" => {},
   "CONFIGURE_REQUIRES" => {
