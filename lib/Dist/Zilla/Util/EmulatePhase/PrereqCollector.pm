@@ -1,11 +1,13 @@
+use 5.008;    #utf8
 use strict;
 use warnings;
+use utf8;
 
 package Dist::Zilla::Util::EmulatePhase::PrereqCollector;
 $Dist::Zilla::Util::EmulatePhase::PrereqCollector::VERSION = '0.01025804';
 #ABSTRACT: A dummy Dist::Zilla to fake a 'prereq' object on.
 
-#AUTHORITY
+our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 use Moose;
 use namespace::autoclean;
