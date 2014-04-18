@@ -75,7 +75,7 @@ my $white_list = [
 ];
 
 sub _is_white_listed {
-  my ( $self, $package, $subroutine ) = @_;
+  my ( undef, $package, $subroutine ) = @_;
   for my $list_rule ( @{$white_list} ) {
     next unless $package->isa( $list_rule->[0] );
     next unless $subroutine eq $list_rule->[1];
