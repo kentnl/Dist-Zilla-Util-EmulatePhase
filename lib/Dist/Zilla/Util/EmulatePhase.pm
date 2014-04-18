@@ -5,6 +5,8 @@ package Dist::Zilla::Util::EmulatePhase;
 $Dist::Zilla::Util::EmulatePhase::VERSION = '0.01025804';
 #ABSTRACT: Nasty tools for probing L<< C<Dist::Zilla>'s|Dist::Zilla >> internal state.
 
+our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
+
 use Scalar::Util qw( refaddr );
 use Try::Tiny;
 use Moose::Autobox;

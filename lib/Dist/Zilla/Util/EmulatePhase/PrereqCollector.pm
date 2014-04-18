@@ -5,6 +5,8 @@ package Dist::Zilla::Util::EmulatePhase::PrereqCollector;
 $Dist::Zilla::Util::EmulatePhase::PrereqCollector::VERSION = '0.01025804';
 #ABSTRACT: A dummy Dist::Zilla to fake a 'prereq' object on.
 
+#AUTHORITY
+
 use Moose;
 use namespace::autoclean;
 use Dist::Zilla::Prereqs;
