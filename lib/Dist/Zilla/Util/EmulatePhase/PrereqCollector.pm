@@ -94,10 +94,14 @@ sub _share_dir_map {
     return $self->shadow_zilla->_share_dir_map(@_);
   }
 
+  my @message;
+  push @message, '[Dist::Zilla::Util::EmulatePhase] Call to self->zilla->_share_dir_map should be avoided';
+  push @message, sprintf ' ... and your package/sub ( %s::%s ) is not listed in the WhiteList', $package, $subroutine;
+  push @message, ' ... Please try eliminate this call to a private method or request it being whitelisted';
+  push @message, q[];
+
   require Carp;
-  Carp::croak( "[Dist::Zilla::Util::EmulatePhase] Call to self->zilla->_share_dir_map should be avoided\n"
-      . "  ... and your package/sub ( $package :: $subroutine ) is not listed in the WhiteList\n"
-      . "  ... Please try eliminate this call to a private method or request it being whitelisted\n" );
+  Carp::croak( join qq[\n], @message );
 }
 
 no Moose;
