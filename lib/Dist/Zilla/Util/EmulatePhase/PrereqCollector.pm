@@ -5,6 +5,8 @@ package Dist::Zilla::Util::EmulatePhase::PrereqCollector;
 
 #ABSTRACT: A dummy Dist::Zilla to fake a 'prereq' object on.
 
+# AUTHORITY
+
 use Moose;
 use namespace::autoclean;
 use Dist::Zilla::Prereqs;

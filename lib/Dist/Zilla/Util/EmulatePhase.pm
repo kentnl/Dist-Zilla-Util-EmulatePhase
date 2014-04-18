@@ -5,6 +5,8 @@ package Dist::Zilla::Util::EmulatePhase;
 
 #ABSTRACT: Nasty tools for probing L<< C<Dist::Zilla>'s|Dist::Zilla >> internal state.
 
+# AUTHORITY
+
 use Scalar::Util qw( refaddr );
 use Try::Tiny;
 use Moose::Autobox;
