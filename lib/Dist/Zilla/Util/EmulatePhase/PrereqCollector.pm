@@ -1,19 +1,28 @@
+use 5.008;    #utf8
 use strict;
 use warnings;
+use utf8;
 
 package Dist::Zilla::Util::EmulatePhase::PrereqCollector;
-BEGIN {
-  $Dist::Zilla::Util::EmulatePhase::PrereqCollector::AUTHORITY = 'cpan:KENTNL';
-}
-{
-  $Dist::Zilla::Util::EmulatePhase::PrereqCollector::VERSION = '0.01025803';
-}
-
+$Dist::Zilla::Util::EmulatePhase::PrereqCollector::VERSION = '1.000000';
 #ABSTRACT: A dummy Dist::Zilla to fake a 'prereq' object on.
 
-use Moose;
+our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
+
+use Moose qw( has );
 use namespace::autoclean;
 use Dist::Zilla::Prereqs;
+
+
+
+
+
+
+
+
+
+
+
 
 
 has shadow_zilla => (
@@ -33,9 +42,17 @@ has prereqs => (
 ## no critic ( Subroutines::RequireArgUnpacking )
 
 
+
+
+
+
+
 sub find_files {
   return shift->shadow_zilla->find_files(@_);
 }
+
+
+
 
 
 sub plugins {
@@ -44,13 +61,21 @@ sub plugins {
 ## no critic ( Subroutines::RequireArgUnpacking, Subroutines::ProhibitUnusedPrivateSubroutines, Subroutines::ProtectPrivateSubs )
 
 
+
+
+
+
+
+
+
+
 my $white_list = [
   [ 'Dist::Zilla::Plugin::MakeMaker',          'Dist::Zilla::Plugin::MakeMaker::register_prereqs' ],
   [ 'Dist::Zilla::Plugin::MakeMaker::Awesome', 'Dist::Zilla::Plugin::MakeMaker::Awesome::register_prereqs' ],
 ];
 
 sub _is_white_listed {
-  my ( $self, $package, $subroutine ) = @_;
+  my ( undef, $package, $subroutine ) = @_;
   for my $list_rule ( @{$white_list} ) {
     next unless $package->isa( $list_rule->[0] );
     next unless $subroutine eq $list_rule->[1];
@@ -69,10 +94,14 @@ sub _share_dir_map {
     return $self->shadow_zilla->_share_dir_map(@_);
   }
 
+  my $message = <<'_MSG_';
+[Dist::Zilla::Util::EmulatePhase] Call to self->zilla->_share_dir_map should be avoided
+ ... and your package/sub ( %s::%s ) is not listed in the WhiteList.
+ ... Please try eliminate this call to a private method or request it being whitelisted
+_MSG_
+
   require Carp;
-  Carp::croak( "[Dist::Zilla::Util::EmulatePhase] Call to self->zilla->_share_dir_map should be avoided\n"
-      . "  ... and your package/sub ( $package :: $subroutine ) is not listed in the WhiteList\n"
-      . "  ... Please try eliminate this call to a private method or request it being whitelisted\n" );
+  Carp::croak( sprintf $message, $package, $subroutine );
 }
 
 no Moose;
@@ -91,7 +120,7 @@ Dist::Zilla::Util::EmulatePhase::PrereqCollector - A dummy Dist::Zilla to fake a
 
 =head1 VERSION
 
-version 0.01025803
+version 1.000000
 
 =head1 METHODS
 
@@ -125,7 +154,7 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Kent Fredric <kentnl@cpan.org>.
+This software is copyright (c) 2014 by Kent Fredric <kentnl@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

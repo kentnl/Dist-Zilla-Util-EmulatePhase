@@ -1,15 +1,13 @@
+use 5.008;    # utf8
 use strict;
 use warnings;
+use utf8;
 
 package Dist::Zilla::Util::EmulatePhase;
-BEGIN {
-  $Dist::Zilla::Util::EmulatePhase::AUTHORITY = 'cpan:KENTNL';
-}
-{
-  $Dist::Zilla::Util::EmulatePhase::VERSION = '0.01025803';
-}
+$Dist::Zilla::Util::EmulatePhase::VERSION = '1.000000';
+#ABSTRACT: Nasty tools for probing Dist::Zilla's internal state.
 
-#ABSTRACT: Nasty tools for probing L<< C<Dist::Zilla>'s|Dist::Zilla >> internal state.
+our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 use Scalar::Util qw( refaddr );
 use Try::Tiny;
@@ -21,18 +19,43 @@ use Sub::Exporter -setup => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 sub deduplicate {
   my ( @args, %seen, @out ) = @_;
   @args->each(
     sub {
-      my ( $index, $item ) = @_;
-      my $a = refaddr($item);
+      my ( undef, $item ) = @_;
       @out->push($item) unless %seen->exists($item);
       %seen->put( $item => 1 );
-    }
+    },
   );
   return @out;
 }
+
+
+
+
+
+
+
+
 
 
 sub expand_modname {
@@ -42,6 +65,19 @@ sub expand_modname {
   $v =~ s/^=/Dist::Zilla::Plugin::/;
   return $v;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 sub get_plugins {
@@ -77,17 +113,17 @@ sub get_plugins {
       sub {
         my $with = expand_modname(shift);
         return $plugins->grep( sub { $_->does($with) } )->flatten;
-      }
+      },
     );
   }
 
   if ( $config->exists('skip_with') ) {
     $config->at('skip_with')->each(
       sub {
-        my ( $index, $value ) = @_;
+        my ( undef, $value ) = @_;
         my $without = expand_modname($value);
         $plugins = $plugins->grep( sub { not $_->does($without) } );
-      }
+      },
     );
   }
 
@@ -96,22 +132,41 @@ sub get_plugins {
       sub {
         my $isa = expand_modname(shift);
         return $plugins->grep( sub { $_->isa($isa) } )->flatten;
-      }
+      },
     );
   }
 
   if ( $config->exists('skip_isa') ) {
     $config->at('skip_isa')->each(
       sub {
-        my ( $index, $value ) = @_;
+        my ( undef, $value ) = @_;
         my $isnt = expand_modname($value);
         $plugins = $plugins->grep( sub { not $_->isa($isnt) } );
-      }
+      },
     );
   }
 
   return deduplicate( $plugins->flatten );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 sub get_metadata {
@@ -127,13 +182,32 @@ sub get_metadata {
   my $meta    = {};
   @plugins->each(
     sub {
-      my ( $index, $value ) = @_;
+      my ( undef, $value ) = @_;
       require Hash::Merge::Simple;
       $meta = Hash::Merge::Simple::merge( $meta, $value->metadata );
-    }
+    },
   );
   return $meta;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 sub get_prereqs {
@@ -153,7 +227,7 @@ sub get_prereqs {
   my $zilla = Dist::Zilla::Util::EmulatePhase::PrereqCollector->new( shadow_zilla => $config->{zilla} );
   @plugins->each(
     sub {
-      my ( $index, $value ) = @_;
+      my ( undef, $value ) = @_;
       {    # subverting!
         ## no critic ( Variables::ProhibitLocalVars )
         local $value->{zilla} = $zilla;
@@ -163,7 +237,7 @@ sub get_prereqs {
         require Carp;
         Carp::croak('Zilla did not reset itself');
       }
-    }
+    },
   );
   $zilla->prereqs->finalize;
   return $zilla->prereqs;
@@ -179,11 +253,11 @@ __END__
 
 =head1 NAME
 
-Dist::Zilla::Util::EmulatePhase - Nasty tools for probing L<< C<Dist::Zilla>'s|Dist::Zilla >> internal state.
+Dist::Zilla::Util::EmulatePhase - Nasty tools for probing Dist::Zilla's internal state.
 
 =head1 VERSION
 
-version 0.01025803
+version 1.000000
 
 =head1 METHODS
 
@@ -265,7 +339,7 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Kent Fredric <kentnl@cpan.org>.
+This software is copyright (c) 2014 by Kent Fredric <kentnl@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
