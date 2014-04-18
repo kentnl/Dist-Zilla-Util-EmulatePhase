@@ -9,7 +9,7 @@ $Dist::Zilla::Util::EmulatePhase::PrereqCollector::VERSION = '0.01025804';
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
-use Moose;
+use Moose qw( has );
 use namespace::autoclean;
 use Dist::Zilla::Prereqs;
 
