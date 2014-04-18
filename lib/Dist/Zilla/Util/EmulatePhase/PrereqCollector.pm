@@ -9,7 +9,7 @@ package Dist::Zilla::Util::EmulatePhase::PrereqCollector;
 
 # AUTHORITY
 
-use Moose;
+use Moose qw( has );
 use namespace::autoclean;
 use Dist::Zilla::Prereqs;
 
