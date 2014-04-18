@@ -41,8 +41,7 @@ sub deduplicate {
   my ( @args, %seen, @out ) = @_;
   @args->each(
     sub {
-      my ( $index, $item ) = @_;
-      my $a = refaddr($item);
+      my ( undef, $item ) = @_;
       @out->push($item) unless %seen->exists($item);
       %seen->put( $item => 1 );
     },
@@ -121,7 +120,7 @@ sub get_plugins {
   if ( $config->exists('skip_with') ) {
     $config->at('skip_with')->each(
       sub {
-        my ( $index, $value ) = @_;
+        my ( undef, $value ) = @_;
         my $without = expand_modname($value);
         $plugins = $plugins->grep( sub { not $_->does($without) } );
       },
@@ -140,7 +139,7 @@ sub get_plugins {
   if ( $config->exists('skip_isa') ) {
     $config->at('skip_isa')->each(
       sub {
-        my ( $index, $value ) = @_;
+        my ( undef, $value ) = @_;
         my $isnt = expand_modname($value);
         $plugins = $plugins->grep( sub { not $_->isa($isnt) } );
       },
@@ -228,7 +227,7 @@ sub get_prereqs {
   my $zilla = Dist::Zilla::Util::EmulatePhase::PrereqCollector->new( shadow_zilla => $config->{zilla} );
   @plugins->each(
     sub {
-      my ( $index, $value ) = @_;
+      my ( undef, $value ) = @_;
       {    # subverting!
         ## no critic ( Variables::ProhibitLocalVars )
         local $value->{zilla} = $zilla;
