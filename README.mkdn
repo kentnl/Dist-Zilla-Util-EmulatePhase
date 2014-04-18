@@ -1,6 +1,6 @@
 # NAME
 
-Dist::Zilla::Util::EmulatePhase - Nasty tools for probing [`Dist::Zilla`'s](https://metacpan.org/pod/Dist::Zilla) internal state.
+Dist::Zilla::Util::EmulatePhase - Nasty tools for probing Dist::Zilla's internal state.
 
 # VERSION
 

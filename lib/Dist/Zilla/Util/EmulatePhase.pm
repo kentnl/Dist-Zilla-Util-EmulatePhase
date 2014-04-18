@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Util::EmulatePhase;
 
-#ABSTRACT: Nasty tools for probing L<< C<Dist::Zilla>'s|Dist::Zilla >> internal state.
+#ABSTRACT: Nasty tools for probing Dist::Zilla's internal state.
 
 # AUTHORITY
 
