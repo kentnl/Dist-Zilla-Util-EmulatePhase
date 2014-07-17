@@ -4,7 +4,7 @@ Dist::Zilla::Util::EmulatePhase - Nasty tools for probing Dist::Zilla's internal
 
 # VERSION
 
-version 1.000001
+version 1.000002
 
 # METHODS
 
