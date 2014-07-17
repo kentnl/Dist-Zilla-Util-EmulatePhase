@@ -16,6 +16,8 @@ toolkit          = eumm
 toolkit_hardness = soft
 twitter_hash_tags = #perl #cpan
 bumpversions      = 1
+copyfiles         = LICENSE
+srcreadme         = mkdn
 
 ;version_major     = 0
 ;version_minor     = 1
