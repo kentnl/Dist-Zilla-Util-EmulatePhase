@@ -3,7 +3,7 @@ NAME
     internal state.
 
 VERSION
-    version 1.000000
+    version 1.000001
 
 METHODS
   deduplicate

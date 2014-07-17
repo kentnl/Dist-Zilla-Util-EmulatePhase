@@ -4,7 +4,7 @@ use warnings;
 use utf8;
 
 package Dist::Zilla::Util::EmulatePhase;
-$Dist::Zilla::Util::EmulatePhase::VERSION = '1.000000';
+$Dist::Zilla::Util::EmulatePhase::VERSION = '1.000001';
 #ABSTRACT: Nasty tools for probing Dist::Zilla's internal state.
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
@@ -257,7 +257,7 @@ Dist::Zilla::Util::EmulatePhase - Nasty tools for probing Dist::Zilla's internal
 
 =head1 VERSION
 
-version 1.000000
+version 1.000001
 
 =head1 METHODS
 

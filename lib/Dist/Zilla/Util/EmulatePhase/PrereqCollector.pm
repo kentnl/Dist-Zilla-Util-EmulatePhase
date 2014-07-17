@@ -4,7 +4,7 @@ use warnings;
 use utf8;
 
 package Dist::Zilla::Util::EmulatePhase::PrereqCollector;
-$Dist::Zilla::Util::EmulatePhase::PrereqCollector::VERSION = '1.000000';
+$Dist::Zilla::Util::EmulatePhase::PrereqCollector::VERSION = '1.000001';
 #ABSTRACT: A dummy Dist::Zilla to fake a 'prereq' object on.
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
@@ -120,7 +120,7 @@ Dist::Zilla::Util::EmulatePhase::PrereqCollector - A dummy Dist::Zilla to fake a
 
 =head1 VERSION
 
-version 1.000000
+version 1.000001
 
 =head1 METHODS
 
