@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Util::EmulatePhase;
 
-our $VERSION = '1.000001';
+our $VERSION = '1.000002';
 
 #ABSTRACT: Nasty tools for probing Dist::Zilla's internal state.
 

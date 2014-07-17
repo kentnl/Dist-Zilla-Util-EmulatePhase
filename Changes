@@ -1,6 +1,8 @@
 ﻿Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.000001 2014-07-17T11:57:21Z
  [00 Trivial]
  - Misc packaging tidy ups.
 
