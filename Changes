@@ -1,6 +1,6 @@
 ﻿Revision history for Dist-Zilla-Util-EmulatePhase
 
-1.000002 2014-08-07T11:32:19Z
+1.000002 2014-08-15T06:17:03Z
  [00 Trivial]
  - no code changes.
  - augment tests.
@@ -16,7 +16,7 @@
  - show 1x x_contributor
 
  [Tests]
- - update Test::ReportVersions
+ - update Test::ReportPrereqs
 
 1.000001 2014-07-17T11:57:21Z
  [00 Trivial]
