@@ -1,6 +1,8 @@
 ﻿Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.000002 2014-08-15T22:05:57Z
  [00 Trivial]
  - CPANDAY!
  - no code changes.
