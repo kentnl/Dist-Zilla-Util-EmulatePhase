@@ -21,10 +21,10 @@ name: Dist-Zilla-Util-EmulatePhase
 provides:
   Dist::Zilla::Util::EmulatePhase:
     file: lib/Dist/Zilla/Util/EmulatePhase.pm
-    version: '1.001000'
+    version: '1.001001'
   Dist::Zilla::Util::EmulatePhase::PrereqCollector:
     file: lib/Dist/Zilla/Util/EmulatePhase/PrereqCollector.pm
-    version: '1.001000'
+    version: '1.001001'
 requires:
   Carp: '0'
   Dist::Zilla::Prereqs: '0'
@@ -42,7 +42,7 @@ resources:
   bugtracker: https://github.com/kentnl/Dist-Zilla-Util-EmulatePhase/issues
   homepage: https://github.com/kentnl/Dist-Zilla-Util-EmulatePhase
   repository: https://github.com/kentnl/Dist-Zilla-Util-EmulatePhase.git
-version: '1.001000'
+version: '1.001001'
 x_BuiltWith:
   modules:
     CPAN::Meta: '2.142060'
@@ -479,7 +479,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: ~
           signed: '0'
-          tag: 1.001000-source
+          tag: 1.001001-source
           tag_format: '%v-source'
           tag_message: v%v
           time_zone: local
@@ -533,7 +533,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: releases
           signed: '0'
-          tag: '1.001000'
+          tag: '1.001001'
           tag_format: '%v'
           tag_message: v%v
           time_zone: local

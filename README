@@ -3,7 +3,7 @@ NAME
     internal state.
 
 VERSION
-    version 1.001000
+    version 1.001001
 
 QUICK REFERENCE
       ::deduplicate(list=[])          # ArrayRef
