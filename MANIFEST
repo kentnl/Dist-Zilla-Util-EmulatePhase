@@ -30,6 +30,7 @@ t/03-dedup.t
 t/04-expand-modname.t
 t/05-get-plugins.t
 t/06-get-metadata.t
+t/07-errorconditions.t
 weaver.ini
 xt/author/critic.t
 xt/release/cpan-changes.t
