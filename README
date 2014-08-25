@@ -5,6 +5,23 @@ NAME
 VERSION
     version 1.001000
 
+QUICK REFERENCE
+      ::deduplicate(list=[])          # ArrayRef
+      ::expand_modname(options=[])
+        0           =>  $shortname
+      ::get_plugins(options={})       # ArrayRef[Object]
+        ^zilla      =>
+        ?with       =>  [rolelist]
+        ?skip_with  =>  [rolelist]
+        ?isa        =>  [isalist]
+        ?skip_isa   =>  [isalist]
+      ::get_metadata(options={})      # HashRef
+        ^zilla      =>
+        ?with       =>  [rolelist]
+      ::get_prereqs(options={})       # HashRef
+        ^zilla      =>
+        ?with       =>  [rolelist]
+
 METHODS
   deduplicate
     Internal utility that de-duplicates references by ref-addr alone.
@@ -65,9 +82,6 @@ METHODS
          with => [qw( -PrereqSource )],
          isa  => [qw( =AutoPrereqs )],
        });
-
-QUICK REFERENCE
-      ::deduplicate(list=[])
 
 AUTHOR
     Kent Fredric <kentnl@cpan.org>
