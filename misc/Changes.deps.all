@@ -17,6 +17,9 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  [Changed / test requires]
  - Dist::Zilla::Util::Test::KENTNL 0.01000510 → 1.002000
 
+ [Removed / runtime requires]
+ - Moose::Autobox
+
 1.000002 2014-08-15T22:05:57Z
  [Added / develop requires]
  - Dist::Zilla::Plugin::Git::Contributors 0.006
