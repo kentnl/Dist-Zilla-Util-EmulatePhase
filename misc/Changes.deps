@@ -1,6 +1,6 @@
 This file contains changes in REQUIRED dependencies for standard CPAN phases (configure/build/runtime/test)
 
-1.000003
+1.001000
  [Added / test requires]
  - Test::DZil
 
