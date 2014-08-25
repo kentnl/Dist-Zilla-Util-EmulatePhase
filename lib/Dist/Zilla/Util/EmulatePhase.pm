@@ -40,14 +40,12 @@ Internal utility that de-duplicates references by ref-addr alone.
 =cut
 
 sub deduplicate {
-  my ( @args, %seen, @out ) = @_;
-  @args->each(
-    sub {
-      my ( undef, $item ) = @_;
-      @out->push($item) unless %seen->exists($item);
-      %seen->put( $item => 1 );
-    },
-  );
+  my ( @args,) = @_;
+  my ( %seen, @out );
+  for my $item ( @args ) {
+    push @out, $item unless exists $seen{$item};
+    $seen{$item} = 1;
+  }
   return @out;
 }
 
