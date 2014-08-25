@@ -230,3 +230,21 @@ sub get_prereqs {
 }
 
 1;
+
+=head1 QUICK REFERENCE
+
+  ::deduplicate(list=[])          # ArrayRef
+  ::expand_modname(options=[])
+    0           =>  $shortname
+  ::get_plugins(options={})       # ArrayRef[Object]
+    ^zilla      =>
+    ?with       =>  [rolelist]
+    ?skip_with  =>  [rolelist]
+    ?isa        =>  [isalist]
+    ?skip_isa   =>  [isalist]
+  ::get_metadata(options={})      # HashRef
+    ^zilla      =>
+    ?with       =>  [rolelist]
+  ::get_prereqs(options={})       # HashRef
+    ^zilla      =>
+    ?with       =>  [rolelist]
