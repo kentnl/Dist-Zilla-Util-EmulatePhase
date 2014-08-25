@@ -124,7 +124,7 @@ sub get_plugins {
 
   if ( exists $config->{'isa'} ) {
     my $old_plugins = $plugins;
-    my $plugins     = [];
+    $plugins = [];
     for my $isa_package ( @{ $config->{isa} } ) {
       my $isa = expand_modname($isa_package);
       push @{$plugins}, grep { $_->isa($isa) } @{$old_plugins};
