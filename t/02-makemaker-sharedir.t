@@ -4,23 +4,14 @@ use warnings;
 use Test::More 0.96;
 use Test::Fatal 0.003;
 
-use Dist::Zilla::Util::Test::KENTNL 0.01000510 qw( test_config );
+use Test::DZil qw( simple_ini );
+use Dist::Zilla::Util::Test::KENTNL 1.002000 qw( dztest );
 use Dist::Zilla::Util::EmulatePhase qw( -all );
 
-my $zilla;
-is(
-  exception {
-    $zilla = test_config(
-      {
-        dist_root => 'corpus/dist/DZT',
-        ini       => [ 'Prereqs', 'MetaConfig', 'MakeMaker' ],
-      }
-    );
-  },
-  undef,
-  'MakeMaker does\'t cause fail'
-);
-
+my $test = dztest();
+$test->add_file( 'dist.ini', simple_ini( 'Prereqs', 'MetaConfig', 'MakeMaker' ) );
+$test->build_ok;
+my $zilla = $test->builder;
 my $prereqs;
 is(
   exception {
