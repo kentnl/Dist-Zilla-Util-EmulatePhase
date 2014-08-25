@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Util::EmulatePhase;
 
-our $VERSION = '1.000002';
+our $VERSION = '1.001000';
 
 #ABSTRACT: Nasty tools for probing Dist::Zilla's internal state.
 
@@ -13,7 +13,6 @@ our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 use Scalar::Util qw( refaddr );
 use Try::Tiny;
-use Moose::Autobox;
 use Sub::Exporter -setup => {
   exports => [qw( deduplicate expand_modname get_plugins get_metadata get_prereqs)],
   groups  => [ default => [qw( -all )] ],
@@ -40,14 +39,12 @@ use Sub::Exporter -setup => {
 
 
 sub deduplicate {
-  my ( @args, %seen, @out ) = @_;
-  @args->each(
-    sub {
-      my ( undef, $item ) = @_;
-      @out->push($item) unless %seen->exists($item);
-      %seen->put( $item => 1 );
-    },
-  );
+  my ( @args, ) = @_;
+  my ( %seen, @out );
+  for my $item (@args) {
+    push @out, $item unless exists $seen{$item};
+    $seen{$item} = 1;
+  }
   return @out;
 }
 
@@ -84,7 +81,7 @@ sub expand_modname {
 
 sub get_plugins {
   my ($config) = @_;
-  if ( not $config or not $config->exists('zilla') ) {
+  if ( not $config or not exists $config->{'zilla'} ) {
     require Carp;
     ## no critic (ValuesAndExpressions::RequireInterpolationOfMetachars)
     Carp::croak('get_plugins({ zilla => $something }) is a minimum requirement');
@@ -110,45 +107,38 @@ sub get_plugins {
     return;
   }
 
-  if ( $config->exists('with') ) {
-    $plugins = $config->at('with')->map(
-      sub {
-        my $with = expand_modname(shift);
-        return $plugins->grep( sub { $_->does($with) } )->flatten;
-      },
-    );
+  if ( exists $config->{'with'} ) {
+    my $old_plugins = $plugins;
+    $plugins = [];
+    for my $with ( map { expand_modname($_) } @{ $config->{with} } ) {
+      push @{$plugins}, grep { $_->does($with) } @{$old_plugins};
+    }
   }
 
-  if ( $config->exists('skip_with') ) {
-    $config->at('skip_with')->each(
-      sub {
-        my ( undef, $value ) = @_;
-        my $without = expand_modname($value);
-        $plugins = $plugins->grep( sub { not $_->does($without) } );
-      },
-    );
+  if ( exists $config->{'skip_with'} ) {
+    for my $value ( @{ $config->{'skip_with'} } ) {
+      my $without = expand_modname($value);
+      $plugins = [ grep { not $_->does($without) } @{$plugins} ];
+    }
   }
 
-  if ( $config->exists('isa') ) {
-    $plugins = $config->at('isa')->map(
-      sub {
-        my $isa = expand_modname(shift);
-        return $plugins->grep( sub { $_->isa($isa) } )->flatten;
-      },
-    );
+  if ( exists $config->{'isa'} ) {
+    my $old_plugins = $plugins;
+    $plugins = [];
+    for my $isa_package ( @{ $config->{isa} } ) {
+      my $isa = expand_modname($isa_package);
+      push @{$plugins}, grep { $_->isa($isa) } @{$old_plugins};
+    }
   }
 
-  if ( $config->exists('skip_isa') ) {
-    $config->at('skip_isa')->each(
-      sub {
-        my ( undef, $value ) = @_;
-        my $isnt = expand_modname($value);
-        $plugins = $plugins->grep( sub { not $_->isa($isnt) } );
-      },
-    );
+  if ( exists $config->{'skip_isa'} ) {
+    for my $value ( @{ $config->{'skip_isa'} } ) {
+      my $isnt = expand_modname($value);
+      $plugins = [ grep { not $_->isa($isnt) } @{$plugins} ];
+    }
   }
 
-  return deduplicate( $plugins->flatten );
+  return deduplicate( @{$plugins} );
 }
 
 
@@ -173,22 +163,19 @@ sub get_plugins {
 
 sub get_metadata {
   my ($config) = @_;
-  if ( not $config or not $config->exists('zilla') ) {
+  if ( not $config or not exists $config->{'zilla'} ) {
     require Carp;
     ## no critic (ValuesAndExpressions::RequireInterpolationOfMetachars)
     Carp::croak('get_metadata({ zilla => $something }) is a minimum requirement');
   }
-  $config->put( with => [] ) unless $config->exists('with');
-  $config->at('with')->push('-MetaProvider');
+  $config->{with} = [] unless exists $config->{'with'};
+  push @{ $config->{'with'} }, '-MetaProvider';
   my @plugins = get_plugins($config);
   my $meta    = {};
-  @plugins->each(
-    sub {
-      my ( undef, $value ) = @_;
-      require Hash::Merge::Simple;
-      $meta = Hash::Merge::Simple::merge( $meta, $value->metadata );
-    },
-  );
+  for my $value (@plugins) {
+    require Hash::Merge::Simple;
+    $meta = Hash::Merge::Simple::merge( $meta, $value->metadata );
+  }
   return $meta;
 }
 
@@ -214,33 +201,30 @@ sub get_metadata {
 
 sub get_prereqs {
   my ($config) = @_;
-  if ( not $config or not $config->exists('zilla') ) {
+  if ( not $config or not exists $config->{'zilla'} ) {
     require Carp;
     ## no critic (ValuesAndExpressions::RequireInterpolationOfMetachars)
     Carp::croak('get_prereqs({ zilla => $something }) is a minimum requirement');
   }
 
-  $config->put( with => [] ) unless $config->exists('with');
-  $config->at('with')->push('-PrereqSource');
+  $config->{'with'} = [] unless exists $config->{'with'};
+  push @{ $config->{'with'} }, '-PrereqSource';
   my @plugins = get_plugins($config);
 
   # This is a bit nasty, because prereqs call back into their data and mess with zilla :/
   require Dist::Zilla::Util::EmulatePhase::PrereqCollector;
   my $zilla = Dist::Zilla::Util::EmulatePhase::PrereqCollector->new( shadow_zilla => $config->{zilla} );
-  @plugins->each(
-    sub {
-      my ( undef, $value ) = @_;
-      {    # subverting!
-        ## no critic ( Variables::ProhibitLocalVars )
-        local $value->{zilla} = $zilla;
-        $value->register_prereqs;
-      }
-      if ( refaddr($zilla) eq refaddr( $value->{zilla} ) ) {
-        require Carp;
-        Carp::croak('Zilla did not reset itself');
-      }
-    },
-  );
+  for my $value (@plugins) {
+    {    # subverting!
+      ## no critic ( Variables::ProhibitLocalVars )
+      local $value->{zilla} = $zilla;
+      $value->register_prereqs;
+    }
+    if ( refaddr($zilla) eq refaddr( $value->{zilla} ) ) {
+      require Carp;
+      Carp::croak('Zilla did not reset itself');
+    }
+  }
   $zilla->prereqs->finalize;
   return $zilla->prereqs;
 }
@@ -259,7 +243,25 @@ Dist::Zilla::Util::EmulatePhase - Nasty tools for probing Dist::Zilla's internal
 
 =head1 VERSION
 
-version 1.000002
+version 1.001000
+
+=head1 QUICK REFERENCE
+
+  ::deduplicate(list=[])          # ArrayRef
+  ::expand_modname(options=[])
+    0           =>  $shortname
+  ::get_plugins(options={})       # ArrayRef[Object]
+    ^zilla      =>
+    ?with       =>  [rolelist]
+    ?skip_with  =>  [rolelist]
+    ?isa        =>  [isalist]
+    ?skip_isa   =>  [isalist]
+  ::get_metadata(options={})      # HashRef
+    ^zilla      =>
+    ?with       =>  [rolelist]
+  ::get_prereqs(options={})       # HashRef
+    ^zilla      =>
+    ?with       =>  [rolelist]
 
 =head1 METHODS
 

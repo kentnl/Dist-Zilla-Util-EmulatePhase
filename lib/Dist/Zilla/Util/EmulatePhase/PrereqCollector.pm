@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Util::EmulatePhase::PrereqCollector;
 
-our $VERSION = '1.000002';
+our $VERSION = '1.001000';
 
 #ABSTRACT: A dummy Dist::Zilla to fake a 'prereq' object on.
 
@@ -122,7 +122,20 @@ Dist::Zilla::Util::EmulatePhase::PrereqCollector - A dummy Dist::Zilla to fake a
 
 =head1 VERSION
 
-version 1.000002
+version 1.001000
+
+=head1 QUICK REFERENCE
+
+  A>shadow_zilla                  # Ref
+  A>prereqs                       # Object
+  ->register_prereqs              # mutator via prereqs
+  ->find_files                    # Proxy via ->shadow_zilla
+  ->plugins                       # []
+  ->_is_white_listed(options=[])  # Bool
+    0 =>  $caller_package
+    1 =>  $caller_subname
+
+  ->_share_dir_map()              # HashRef
 
 =head1 METHODS
 

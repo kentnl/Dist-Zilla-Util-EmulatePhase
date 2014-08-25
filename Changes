@@ -1,5 +1,23 @@
 ﻿Revision history for Dist-Zilla-Util-EmulatePhase
 
+1.001000 2014-08-25T21:17:31Z
+ [00 Minor]
+ - Test refactoring.
+ - Internals refactoring
+
+ [Dependencies::Stats]
+ - Dependencies changed since 1.000002, see misc/*.deps* for details
+ - develop: +1 ↑1 (suggests: ↑2)
+ - runtime: -1
+ - test: +1 ↑1
+
+ [Internals]
+ - Code rewritten to not use Moose::Autobox while keeping semantics the same.
+
+ [Tests]
+ - Tests split
+ - Tests refactored in terms of new dztest util.
+
 1.000002 2014-08-15T22:05:57Z
  [00 Trivial]
  - CPANDAY!
