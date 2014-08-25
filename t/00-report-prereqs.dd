@@ -71,7 +71,6 @@ do { my $x = {
                                       'Dist::Zilla::Prereqs' => '0',
                                       'Hash::Merge::Simple' => '0',
                                       'Moose' => '0',
-                                      'Moose::Autobox' => '0',
                                       'Scalar::Util' => '0',
                                       'Sub::Exporter' => '0',
                                       'Try::Tiny' => '0',

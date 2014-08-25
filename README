@@ -66,6 +66,9 @@ METHODS
          isa  => [qw( =AutoPrereqs )],
        });
 
+QUICK REFERENCE
+      ::deduplicate(list=[])
+
 AUTHOR
     Kent Fredric <kentnl@cpan.org>
 
