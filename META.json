@@ -104,9 +104,10 @@
             "Test::More" : "1.001003"
          },
          "requires" : {
-            "Dist::Zilla::Util::Test::KENTNL" : "0.01000510",
+            "Dist::Zilla::Util::Test::KENTNL" : "1.002000",
             "ExtUtils::MakeMaker" : "0",
             "File::Spec" : "0",
+            "Test::DZil" : "0",
             "Test::Fatal" : "0.003",
             "Test::More" : "0.96"
          }
@@ -197,6 +198,7 @@
          "Sub::Exporter" : "0.987",
          "Test::CPAN::Changes" : "0.30",
          "Test::CPAN::Meta" : "0.23",
+         "Test::DZil" : "5.020",
          "Test::Fatal" : "0.013",
          "Test::Kwalitee" : "1.22",
          "Test::More" : "1.001003",
