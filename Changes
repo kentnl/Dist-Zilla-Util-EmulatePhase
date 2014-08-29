@@ -1,6 +1,8 @@
 ﻿Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.001001 2014-08-29T09:51:56Z
  [Bugfix]
  - Avoid failures on old Path::Tiny stuff.
 
