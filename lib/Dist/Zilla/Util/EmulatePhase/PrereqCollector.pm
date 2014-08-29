@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Util::EmulatePhase::PrereqCollector;
 
-our $VERSION = '1.001000';
+our $VERSION = '1.001001';
 
 #ABSTRACT: A dummy Dist::Zilla to fake a 'prereq' object on.
 
@@ -122,7 +122,7 @@ Dist::Zilla::Util::EmulatePhase::PrereqCollector - A dummy Dist::Zilla to fake a
 
 =head1 VERSION
 
-version 1.001000
+version 1.001001
 
 =head1 QUICK REFERENCE
 

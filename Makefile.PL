@@ -33,14 +33,14 @@ my %WriteMakefileArgs = (
     "warnings" => 0
   },
   "TEST_REQUIRES" => {
-    "Dist::Zilla::Util::Test::KENTNL" => "1.002000",
+    "Dist::Zilla::Util::Test::KENTNL" => "1.003001",
     "ExtUtils::MakeMaker" => 0,
     "File::Spec" => 0,
     "Test::DZil" => 0,
     "Test::Fatal" => "0.003",
     "Test::More" => "0.96"
   },
-  "VERSION" => "1.001000",
+  "VERSION" => "1.001001",
   "test" => {
     "TESTS" => "t/*.t t/00-compile/*.t"
   }
@@ -50,7 +50,7 @@ my %WriteMakefileArgs = (
 my %FallbackPrereqs = (
   "Carp" => 0,
   "Dist::Zilla::Prereqs" => 0,
-  "Dist::Zilla::Util::Test::KENTNL" => "1.002000",
+  "Dist::Zilla::Util::Test::KENTNL" => "1.003001",
   "ExtUtils::MakeMaker" => 0,
   "File::Spec" => 0,
   "Hash::Merge::Simple" => 0,
