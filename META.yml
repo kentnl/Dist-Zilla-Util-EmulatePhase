@@ -48,7 +48,7 @@ x_BuiltWith:
     CPAN::Meta: '2.142060'
     Carp: '1.34'
     Dist::Zilla::App::Command::bakeini: '0.001002'
-    Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes: '0.003001'
+    Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes: '0.003002'
     Dist::Zilla::Plugin::Authority: '1.006'
     Dist::Zilla::Plugin::AutoPrereqs: '5.020'
     Dist::Zilla::Plugin::BumpVersionAfterRelease: '0.002'
@@ -68,7 +68,7 @@ x_BuiltWith:
     Dist::Zilla::Plugin::Manifest: '5.020'
     Dist::Zilla::Plugin::ManifestSkip: '5.020'
     Dist::Zilla::Plugin::MetaConfig: '5.020'
-    Dist::Zilla::Plugin::MetaData::BuiltWith: '1.002000'
+    Dist::Zilla::Plugin::MetaData::BuiltWith: '1.003000'
     Dist::Zilla::Plugin::MetaJSON: '5.020'
     Dist::Zilla::Plugin::MetaProvides::Package: '2.001001'
     Dist::Zilla::Plugin::MetaTests: '5.020'
@@ -107,7 +107,7 @@ x_BuiltWith:
     Test::DZil: '5.020'
     Test::Fatal: '0.013'
     Test::Kwalitee: '1.22'
-    Test::More: '1.001003'
+    Test::More: '1.001006'
     Test::Pod: '1.48'
     Test::Pod::Coverage: '1.10'
     Try::Tiny: '0.22'
@@ -183,7 +183,7 @@ x_Dist_Zilla:
               - -i
             uname_call: uname
       name: '@Author::KENTNL/MetaData::BuiltWith'
-      version: '1.002000'
+      version: '1.003000'
     -
       class: Dist::Zilla::Plugin::Git::Contributors
       config:
@@ -413,7 +413,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes
       name: '@Author::KENTNL/Author::KENTNL::RecommendFixes'
-      version: '0.003001'
+      version: '0.003002'
     -
       class: Dist::Zilla::Plugin::ReadmeFromPod
       name: '@Author::KENTNL/ReadmeFromPod'
@@ -489,8 +489,6 @@ x_Dist_Zilla:
       version: '2.023'
     -
       class: Dist::Zilla::Plugin::Git::NextRelease
-      config:
-        Dist::Zilla::Plugin::Git::NextRelease: {}
       name: '@Author::KENTNL/Git::NextRelease'
       version: '0.003000'
     -
