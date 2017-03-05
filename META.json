@@ -465,11 +465,6 @@
                      },
                      {
                         "class" : "Pod::Weaver::Section::Generic",
-                        "name" : "QUICK REFERENCE",
-                        "version" : "4.015"
-                     },
-                     {
-                        "class" : "Pod::Weaver::Section::Generic",
                         "name" : "SYNOPSIS",
                         "version" : "4.015"
                      },

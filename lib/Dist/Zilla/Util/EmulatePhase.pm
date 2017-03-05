@@ -244,24 +244,6 @@ Dist::Zilla::Util::EmulatePhase - Nasty tools for probing Dist::Zilla's internal
 
 version 1.001002
 
-=head1 QUICK REFERENCE
-
-  ::deduplicate(list=[])          # ArrayRef
-  ::expand_modname(options=[])
-    0           =>  $shortname
-  ::get_plugins(options={})       # ArrayRef[Object]
-    ^zilla      =>
-    ?with       =>  [rolelist]
-    ?skip_with  =>  [rolelist]
-    ?isa        =>  [isalist]
-    ?skip_isa   =>  [isalist]
-  ::get_metadata(options={})      # HashRef
-    ^zilla      =>
-    ?with       =>  [rolelist]
-  ::get_prereqs(options={})       # HashRef
-    ^zilla      =>
-    ?with       =>  [rolelist]
-
 =head1 METHODS
 
 =head2 deduplicate
