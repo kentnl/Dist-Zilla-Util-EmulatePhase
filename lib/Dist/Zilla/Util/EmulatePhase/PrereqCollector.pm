@@ -1,11 +1,10 @@
-use 5.008;    #utf8
+use 5.006;    # our
 use strict;
 use warnings;
-use utf8;
 
 package Dist::Zilla::Util::EmulatePhase::PrereqCollector;
 
-our $VERSION = '1.001001';
+our $VERSION = '1.001002';
 
 #ABSTRACT: A dummy Dist::Zilla to fake a 'prereq' object on.
 
@@ -122,20 +121,7 @@ Dist::Zilla::Util::EmulatePhase::PrereqCollector - A dummy Dist::Zilla to fake a
 
 =head1 VERSION
 
-version 1.001001
-
-=head1 QUICK REFERENCE
-
-  A>shadow_zilla                  # Ref
-  A>prereqs                       # Object
-  ->register_prereqs              # mutator via prereqs
-  ->find_files                    # Proxy via ->shadow_zilla
-  ->plugins                       # []
-  ->_is_white_listed(options=[])  # Bool
-    0 =>  $caller_package
-    1 =>  $caller_subname
-
-  ->_share_dir_map()              # HashRef
+version 1.001002
 
 =head1 METHODS
 
@@ -169,7 +155,7 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2014 by Kent Fredric <kentnl@cpan.org>.
+This software is copyright (c) 2017 by Kent Fredric <kentnl@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

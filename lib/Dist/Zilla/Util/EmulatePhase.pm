@@ -1,11 +1,10 @@
-use 5.008;    # utf8
+use 5.006;    # our
 use strict;
 use warnings;
-use utf8;
 
 package Dist::Zilla::Util::EmulatePhase;
 
-our $VERSION = '1.001001';
+our $VERSION = '1.001002';
 
 #ABSTRACT: Nasty tools for probing Dist::Zilla's internal state.
 
@@ -243,25 +242,7 @@ Dist::Zilla::Util::EmulatePhase - Nasty tools for probing Dist::Zilla's internal
 
 =head1 VERSION
 
-version 1.001001
-
-=head1 QUICK REFERENCE
-
-  ::deduplicate(list=[])          # ArrayRef
-  ::expand_modname(options=[])
-    0           =>  $shortname
-  ::get_plugins(options={})       # ArrayRef[Object]
-    ^zilla      =>
-    ?with       =>  [rolelist]
-    ?skip_with  =>  [rolelist]
-    ?isa        =>  [isalist]
-    ?skip_isa   =>  [isalist]
-  ::get_metadata(options={})      # HashRef
-    ^zilla      =>
-    ?with       =>  [rolelist]
-  ::get_prereqs(options={})       # HashRef
-    ^zilla      =>
-    ?with       =>  [rolelist]
+version 1.001002
 
 =head1 METHODS
 
@@ -343,7 +324,7 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2014 by Kent Fredric <kentnl@cpan.org>.
+This software is copyright (c) 2017 by Kent Fredric <kentnl@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

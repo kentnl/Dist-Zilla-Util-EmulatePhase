@@ -1,4 +1,19 @@
-﻿Revision history for Dist-Zilla-Util-EmulatePhase
+Revision history for Dist-Zilla-Util-EmulatePhase
+
+1.001002 2017-03-05T06:55:07Z 999a97a
+ [Bugfix]
+ - Avoid test failures on 5.26 w/ -Ddefault_inc_excludes_dot
+ - Closes https://github.com/kentnl/Dist-Zilla-Util-EmulatePhase/issues/2
+
+ [Dependencies::Stats]
+ - Dependencies changed since 1.001001, see misc/*.deps* for details
+ - configure: +1 (recommends: ↑1)
+ - develop: +14 ↑4 -3 (recommends: +1, suggests: ↑2)
+ - runtime: ↓1 -1 (recommends: +1)
+ - test: +2 -1 (recommends: +1 ↑1 ↓1)
+
+ [Tests]
+ - Avoid use of dztest
 
 1.001001 2014-08-29T09:51:56Z
  [Bugfix]
@@ -203,4 +218,3 @@
 
 0.01000015 2010-11-03T17:57:41Z
  - First version.
-
