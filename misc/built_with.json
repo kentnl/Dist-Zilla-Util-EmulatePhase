@@ -78,7 +78,6 @@
       "Try::Tiny" : "0.28",
       "namespace::autoclean" : "0.28",
       "strict" : "1.11",
-      "utf8" : "1.19",
       "warnings" : "1.37"
    },
    "perl" : {

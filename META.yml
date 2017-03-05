@@ -9,10 +9,10 @@ build_requires:
   Test::DZil: '0'
   Test::Fatal: '0.003'
   Test::More: '0.96'
-  perl: '5.008'
+  perl: '5.006'
 configure_requires:
   ExtUtils::MakeMaker: '0'
-  perl: '5.008'
+  perl: '5.006'
 dynamic_config: 0
 generated_by: 'Dist::Zilla version 6.009, CPAN::Meta::Converter version 2.150010'
 license: perl
@@ -38,9 +38,8 @@ requires:
   Sub::Exporter: '0'
   Try::Tiny: '0'
   namespace::autoclean: '0'
-  perl: '5.008'
+  perl: '5.006'
   strict: '0'
-  utf8: '0'
   warnings: '0'
 resources:
   bugtracker: https://github.com/kentnl/Dist-Zilla-Util-EmulatePhase/issues

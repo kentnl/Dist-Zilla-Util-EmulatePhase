@@ -5,7 +5,7 @@ do { my $x = {
                                         },
                         'requires' => {
                                         'ExtUtils::MakeMaker' => '0',
-                                        'perl' => '5.008'
+                                        'perl' => '5.006'
                                       }
                       },
        'develop' => {
@@ -93,9 +93,8 @@ do { my $x = {
                                       'Sub::Exporter' => '0',
                                       'Try::Tiny' => '0',
                                       'namespace::autoclean' => '0',
-                                      'perl' => '5.008',
+                                      'perl' => '5.006',
                                       'strict' => '0',
-                                      'utf8' => '0',
                                       'warnings' => '0'
                                     }
                     },
@@ -112,7 +111,7 @@ do { my $x = {
                                    'Test::DZil' => '0',
                                    'Test::Fatal' => '0.003',
                                    'Test::More' => '0.96',
-                                   'perl' => '5.008'
+                                   'perl' => '5.006'
                                  }
                  }
      };
