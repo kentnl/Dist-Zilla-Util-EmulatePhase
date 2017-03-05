@@ -4,7 +4,7 @@ use warnings;
 
 package Dist::Zilla::Util::EmulatePhase;
 
-our $VERSION = '1.001002';
+our $VERSION = '1.001003';
 
 #ABSTRACT: Nasty tools for probing Dist::Zilla's internal state.
 

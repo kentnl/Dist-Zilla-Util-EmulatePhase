@@ -1,6 +1,8 @@
-﻿Revision history for {{$dist->name}}
+Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.001002 2017-03-05T06:55:07Z 999a97a
  [Bugfix]
  - Avoid test failures on 5.26 w/ -Ddefault_inc_excludes_dot
  - Closes https://github.com/kentnl/Dist-Zilla-Util-EmulatePhase/issues/2
