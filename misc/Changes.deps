@@ -1,6 +1,11 @@
 This file contains changes in REQUIRED dependencies for standard CPAN phases (configure/build/runtime/test)
 
 1.001002
+ [Added / configure requires]
+ - perl 5.008
+
+ [Added / test requires]
+ - perl 5.008
 
 1.001001 2014-08-29T09:51:56Z
  [Changed / test requires]
@@ -118,4 +123,3 @@ This file contains changes in REQUIRED dependencies for standard CPAN phases (co
  - Dist::Zilla::Prereqs
  - Moose
  - namespace::autoclean
-
