@@ -1,6 +1,6 @@
 Revision history for Dist-Zilla-Util-EmulatePhase
 
-1.001002 2017-03-05T06:29:25Z 32fe5a5
+1.001002 2017-03-05T06:42:24Z f5cc525
  [Bugfix]
  - Avoid test failures on 5.26 w/ -Ddefault_inc_excludes_dot
  - Closes https://github.com/kentnl/Dist-Zilla-Util-EmulatePhase/issues/2
@@ -10,7 +10,10 @@ Revision history for Dist-Zilla-Util-EmulatePhase
  - configure: +1 (recommends: ↑1)
  - develop: +14 ↑4 -3 (recommends: +1, suggests: ↑2)
  - runtime: ↓1 -1 (recommends: +1)
- - test: +1 (recommends: ↑1 ↓1)
+ - test: +2 -1 (recommends: +1 ↑1 ↓1)
+
+ [Tests]
+ - Avoid use of dztest
 
 1.001001 2014-08-29T09:51:56Z
  [Bugfix]
