@@ -6,7 +6,8 @@ license          = Perl_5
 copyright_holder = Kent Fredric <kentnl@cpan.org>
 
 ; Uncomment this to bootstrap via self 
-[Bootstrap::lib]
+[lib]
+lib = lib
 
 [@Author::KENTNL]
 :version         = 2.025020
