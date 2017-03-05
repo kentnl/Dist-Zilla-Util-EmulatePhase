@@ -9,7 +9,7 @@
  - Dependencies changed since 1.001001, see misc/*.deps* for details
  - configure: +1 (recommends: ↑1)
  - develop: +14 ↑4 -3 (recommends: +1, suggests: ↑2)
- - runtime: (recommends: +1)
+ - runtime: ↓1 -1 (recommends: +1)
  - test: +1 (recommends: ↑1 ↓1)
 
 1.001001 2014-08-29T09:51:56Z
