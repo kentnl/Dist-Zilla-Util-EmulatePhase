@@ -5,6 +5,7 @@ This file contains changes in REQUIRED dependencies for standard CPAN phases (co
  - perl 5.006
 
  [Added / test requires]
+ - Path::Tiny
  - perl 5.006
 
  [Changed / runtime requires]
@@ -12,6 +13,9 @@ This file contains changes in REQUIRED dependencies for standard CPAN phases (co
 
  [Removed / runtime requires]
  - utf8
+
+ [Removed / test requires]
+ - Dist::Zilla::Util::Test::KENTNL 1.003001
 
 1.001001 2014-08-29T09:51:56Z
  [Changed / test requires]
