@@ -108,18 +108,3 @@ _MSG_
 no Moose;
 __PACKAGE__->meta->make_immutable;
 1;
-
-=head1 QUICK REFERENCE
-
-  A>shadow_zilla                  # Ref
-  A>prereqs                       # Object
-  ->register_prereqs              # mutator via prereqs
-  ->find_files                    # Proxy via ->shadow_zilla
-  ->plugins                       # []
-  ->_is_white_listed(options=[])  # Bool
-    0 =>  $caller_package
-    1 =>  $caller_subname
-
-  ->_share_dir_map()              # HashRef
-
-=cut
