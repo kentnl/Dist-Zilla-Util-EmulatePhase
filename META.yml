@@ -23,10 +23,10 @@ name: Dist-Zilla-Util-EmulatePhase
 provides:
   Dist::Zilla::Util::EmulatePhase:
     file: lib/Dist/Zilla/Util/EmulatePhase.pm
-    version: '1.001002'
+    version: '1.001003'
   Dist::Zilla::Util::EmulatePhase::PrereqCollector:
     file: lib/Dist/Zilla/Util/EmulatePhase/PrereqCollector.pm
-    version: '1.001002'
+    version: '1.001003'
 recommends:
   Moose: '2.000'
 requires:
@@ -45,4 +45,4 @@ resources:
   bugtracker: https://github.com/kentnl/Dist-Zilla-Util-EmulatePhase/issues
   homepage: https://github.com/kentnl/Dist-Zilla-Util-EmulatePhase
   repository: https://github.com/kentnl/Dist-Zilla-Util-EmulatePhase.git
-version: '1.001002'
+version: '1.001003'

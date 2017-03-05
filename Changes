@@ -1,5 +1,7 @@
 Revision history for Dist-Zilla-Util-EmulatePhase
 
+1.001003 2017-03-05T06:57:39Z e735bad
+
 1.001002 2017-03-05T06:55:07Z 999a97a
  [Bugfix]
  - Avoid test failures on 5.26 w/ -Ddefault_inc_excludes_dot
