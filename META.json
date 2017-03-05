@@ -33,7 +33,6 @@
             "Dist::Zilla::Plugin::Author::KENTNL::TravisCI" : "0.001002",
             "Dist::Zilla::Plugin::Authority" : "1.006",
             "Dist::Zilla::Plugin::AutoPrereqs" : "0",
-            "Dist::Zilla::Plugin::Bootstrap::lib" : "0",
             "Dist::Zilla::Plugin::BumpVersionAfterRelease" : "0",
             "Dist::Zilla::Plugin::ConfirmRelease" : "0",
             "Dist::Zilla::Plugin::CopyFilesFromBuild" : "0",
@@ -78,6 +77,7 @@
             "Dist::Zilla::Plugin::TestRelease" : "0",
             "Dist::Zilla::Plugin::Twitter" : "0",
             "Dist::Zilla::Plugin::UploadToCPAN" : "0",
+            "Dist::Zilla::Plugin::lib" : "0",
             "English" : "0",
             "Pod::Coverage::TrustPod" : "0",
             "Software::License::Perl_5" : "0",
@@ -163,18 +163,16 @@
       },
       "plugins" : [
          {
-            "class" : "Dist::Zilla::Plugin::Bootstrap::lib",
+            "class" : "Dist::Zilla::Plugin::lib",
             "config" : {
-               "Dist::Zilla::Role::Bootstrap" : {
-                  "$Dist::Zilla::Role::Bootstrap::VERSION" : "1.001003",
-                  "distname" : "Dist-Zilla-Util-EmulatePhase",
-                  "fallback" : 1,
-                  "try_built" : null,
-                  "try_built_method" : "mtime"
+               "Dist::Zilla::Plugin::lib" : {
+                  "lib" : [
+                     "lib"
+                  ]
                }
             },
-            "name" : "Bootstrap::lib",
-            "version" : "1.001001"
+            "name" : "lib",
+            "version" : "0.001001"
          },
          {
             "class" : "Dist::Zilla::Plugin::MetaConfig",
